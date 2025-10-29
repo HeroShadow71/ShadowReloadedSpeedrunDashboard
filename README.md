@@ -10,10 +10,16 @@ Create the virtual environment
 
     python -m venv venv
 
-Activate it
+Activate it (if venv and requirements are already installed this step can be skipped by opening run_streamlit.bat)
 
     venv/Scripts/Activate
 
-Either open run_streamlit.bat or:
+Install requirements.txt
+
+    pip install -r requirements.txt
+
+Open run_streamlit.bat or
+
+Command to run the app
 
     streamlit run streamlit_app.py
