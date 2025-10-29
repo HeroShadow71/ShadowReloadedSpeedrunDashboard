@@ -210,9 +210,17 @@ def _format_places_for_display(table_df):
     # Stable sort for display
     table_df = table_df.sort_values(["primary_t", "date"], na_position="last")
 
-    # Decide grouping columns that mirror ranking scope used upstream
-    # Keep level_name and category_name if present so ranks are computed per-level/category/character
-    group_cols = [col for col in ("level_name", "category_name", "character_name") if col in table_df.columns]
+    # Decide grouping columns that mirror ranking scope used upstream.
+    # Only include columns that actually contain values in this filtered table.
+    filter_cols = ("level_name", "category_name", "character_name")
+    group_cols = [col for col in filter_cols if col in table_df.columns and table_df[col].notna().any()]
+
+    # If nothing meaningful found, fall back to category_name when present.
+    if not group_cols:
+        if "category_name" in table_df.columns and table_df["category_name"].notna().any():
+            group_cols = ["category_name"]
+        else:
+            group_cols = []  # global ranking across visible rows
 
     # Compute rank among visible non-obsolete rows
     mask_non_obsolete = ~table_df["obsolete"].astype(bool)
@@ -223,7 +231,7 @@ def _format_places_for_display(table_df):
     if mask_non_obsolete.any():
         ranks = (
             table_df.loc[mask_non_obsolete]
-            .groupby(group_cols, observed=False)["primary_t"]
+            .groupby(group_cols, observed=True)["primary_t"]
             .rank(method="min", ascending=True)
             .astype("Int64")
         )
