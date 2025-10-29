@@ -1,0 +1,1 @@
+"""Core logic for Shadow Reloaded Speedrun data fetching, processing and caching."""

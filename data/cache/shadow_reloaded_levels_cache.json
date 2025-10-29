@@ -1,0 +1,1442 @@
+[
+  {
+    "id": "9gyyglk9",
+    "name": "Westopolis",
+    "weblink": "http://www.speedrun.com/shadowreloaded/westopolis",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/9gyyglk9"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/9gyyglk9/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/9gyyglk9/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/9gyyglk9/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=9gyyglk9"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/9gyyglk9/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "9x11eg1d",
+    "name": "Digital Circuit",
+    "weblink": "http://www.speedrun.com/shadowreloaded/digital-circuit",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/9x11eg1d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/9x11eg1d/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/9x11eg1d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/9x11eg1d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=9x11eg1d"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/9x11eg1d/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "95kk12j9",
+    "name": "Glyphic Canyon",
+    "weblink": "http://www.speedrun.com/shadowreloaded/glyphic-canyon",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/95kk12j9"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/95kk12j9/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/95kk12j9/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/95kk12j9/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=95kk12j9"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/95kk12j9/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "dqzzk81d",
+    "name": "Lethal Highway",
+    "weblink": "http://www.speedrun.com/shadowreloaded/lethal-highway",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/dqzzk81d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/dqzzk81d/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/dqzzk81d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/dqzzk81d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=dqzzk81d"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/dqzzk81d/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "d7yym1vd",
+    "name": "Cryptic Castle",
+    "weblink": "http://www.speedrun.com/shadowreloaded/cryptic-castle",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/d7yym1vd"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/d7yym1vd/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/d7yym1vd/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/d7yym1vd/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=d7yym1vd"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/d7yym1vd/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "wj77qgzw",
+    "name": "Prison Island",
+    "weblink": "http://www.speedrun.com/shadowreloaded/prison-island",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/wj77qgzw"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/wj77qgzw/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/wj77qgzw/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/wj77qgzw/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=wj77qgzw"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/wj77qgzw/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "wo77pjy9",
+    "name": "Circus Park",
+    "weblink": "http://www.speedrun.com/shadowreloaded/circus-park",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/wo77pjy9"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/wo77pjy9/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/wo77pjy9/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/wo77pjy9/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=wo77pjy9"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/wo77pjy9/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "d1jjqm6d",
+    "name": "Central City",
+    "weblink": "http://www.speedrun.com/shadowreloaded/central-city",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/d1jjqm6d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/d1jjqm6d/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/d1jjqm6d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/d1jjqm6d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=d1jjqm6d"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/d1jjqm6d/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "wp7763zw",
+    "name": "The Doom",
+    "weblink": "http://www.speedrun.com/shadowreloaded/the-doom",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/wp7763zw"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/wp7763zw/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/wp7763zw/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/wp7763zw/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=wp7763zw"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/wp7763zw/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "9m55o61d",
+    "name": "Sky Troops",
+    "weblink": "http://www.speedrun.com/shadowreloaded/sky-troops",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/9m55o61d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/9m55o61d/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/9m55o61d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/9m55o61d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=9m55o61d"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/9m55o61d/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "wkkk7xqw",
+    "name": "Mad Matrix",
+    "weblink": "http://www.speedrun.com/shadowreloaded/mad-matrix",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/wkkk7xqw"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/wkkk7xqw/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/wkkk7xqw/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/wkkk7xqw/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=wkkk7xqw"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/wkkk7xqw/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "92007krd",
+    "name": "Death Ruins",
+    "weblink": "http://www.speedrun.com/shadowreloaded/death-ruins",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/92007krd"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/92007krd/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/92007krd/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/92007krd/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=92007krd"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/92007krd/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "9vmmr6n9",
+    "name": "The ARK",
+    "weblink": "http://www.speedrun.com/shadowreloaded/the-ark",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/9vmmr6n9"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/9vmmr6n9/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/9vmmr6n9/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/9vmmr6n9/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=9vmmr6n9"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/9vmmr6n9/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "d400o1p9",
+    "name": "Air Fleet",
+    "weblink": "http://www.speedrun.com/shadowreloaded/air-fleet",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/d400o1p9"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/d400o1p9/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/d400o1p9/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/d400o1p9/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=d400o1p9"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/d400o1p9/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "d0kk5119",
+    "name": "Iron Jungle",
+    "weblink": "http://www.speedrun.com/shadowreloaded/iron-jungle",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/d0kk5119"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/d0kk5119/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/d0kk5119/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/d0kk5119/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=d0kk5119"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/d0kk5119/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "w6qq617d",
+    "name": "Space Gadget",
+    "weblink": "http://www.speedrun.com/shadowreloaded/space-gadget",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/w6qq617d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/w6qq617d/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/w6qq617d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/w6qq617d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=w6qq617d"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/w6qq617d/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "93qqj1ew",
+    "name": "Lost Impact",
+    "weblink": "http://www.speedrun.com/shadowreloaded/lost-impact",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/93qqj1ew"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/93qqj1ew/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/93qqj1ew/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/93qqj1ew/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=93qqj1ew"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/93qqj1ew/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "98rrk3ld",
+    "name": "GUN Fortress",
+    "weblink": "http://www.speedrun.com/shadowreloaded/gun-fortress",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/98rrk3ld"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/98rrk3ld/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/98rrk3ld/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/98rrk3ld/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=98rrk3ld"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/98rrk3ld/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "dnoo17vw",
+    "name": "Black Comet",
+    "weblink": "http://www.speedrun.com/shadowreloaded/black-comet",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/dnoo17vw"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/dnoo17vw/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/dnoo17vw/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/dnoo17vw/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=dnoo17vw"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/dnoo17vw/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "dy11zxzd",
+    "name": "Lava Shelter",
+    "weblink": "http://www.speedrun.com/shadowreloaded/lava-shelter",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/dy11zxzd"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/dy11zxzd/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/dy11zxzd/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/dy11zxzd/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=dy11zxzd"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/dy11zxzd/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "93qqj1rw",
+    "name": "Cosmic Fall",
+    "weblink": "http://www.speedrun.com/shadowreloaded/cosmic-fall",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/93qqj1rw"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/93qqj1rw/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/93qqj1rw/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/93qqj1rw/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=93qqj1rw"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/93qqj1rw/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "98rrk31d",
+    "name": "Final Haunt",
+    "weblink": "http://www.speedrun.com/shadowreloaded/final-haunt",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/98rrk31d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/98rrk31d/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/98rrk31d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/98rrk31d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=98rrk31d"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/98rrk31d/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "dnoo176w",
+    "name": "The Last Way",
+    "weblink": "http://www.speedrun.com/shadowreloaded/the-last-way",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/dnoo176w"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/dnoo176w/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/dnoo176w/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/dnoo176w/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=dnoo176w"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/dnoo176w/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "dy11zx7d",
+    "name": "Black Bull (Lethal Highway)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/black-bull-lethal-highway",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/dy11zx7d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/dy11zx7d/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/dy11zx7d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/dy11zx7d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=dy11zx7d"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/dy11zx7d/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "wlggjmg9",
+    "name": "Egg Breaker (Cryptic Castle)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/egg-breaker-cryptic-castle",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/wlggjmg9"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/wlggjmg9/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/wlggjmg9/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/wlggjmg9/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=wlggjmg9"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/wlggjmg9/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "9gyygm29",
+    "name": "Heavy Dog",
+    "weblink": "http://www.speedrun.com/shadowreloaded/heavy-dog",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/9gyygm29"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/9gyygm29/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/9gyygm29/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/9gyygm29/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=9gyygm29"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/9gyygm29/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "we22ev4w",
+    "name": "Egg Breaker (Mad Matrix)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/egg-breaker-mad-matrix",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/we22ev4w"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/we22ev4w/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/we22ev4w/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/we22ev4w/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=we22ev4w"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/we22ev4w/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "drpp30kw",
+    "name": "Black Bull (Death Ruins)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/black-bull-death-ruins",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/drpp30kw"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/drpp30kw/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/drpp30kw/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/drpp30kw/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=drpp30kw"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/drpp30kw/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "9x11ey7d",
+    "name": "Blue Falcon",
+    "weblink": "http://www.speedrun.com/shadowreloaded/blue-falcon",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/9x11ey7d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/9x11ey7d/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/9x11ey7d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/9x11ey7d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=9x11ey7d"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/9x11ey7d/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "9zppgl4w",
+    "name": "Egg Breaker (Iron Jungle)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/egg-breaker-iron-jungle",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/9zppgl4w"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/9zppgl4w/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/9zppgl4w/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/9zppgl4w/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=9zppgl4w"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/9zppgl4w/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "wp77624w",
+    "name": "Diablon (GUN Fortress)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/diablon-gun-fortress",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/wp77624w"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/wp77624w/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/wp77624w/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/wp77624w/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=wp77624w"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/wp77624w/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "95kk1q49",
+    "name": "Black Doom (GUN Fortress)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/black-doom-gun-fortress",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/95kk1q49"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/95kk1q49/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/95kk1q49/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/95kk1q49/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=95kk1q49"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/95kk1q49/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "9m55om0d",
+    "name": "Diablon (Black Comet)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/diablon-black-comet",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/9m55om0d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/9m55om0d/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/9m55om0d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/9m55om0d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=9m55om0d"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/9m55om0d/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "wj77qk1w",
+    "name": "Egg Dealer (Black Comet)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/egg-dealer-black-comet",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/wj77qk1w"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/wj77qk1w/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/wj77qk1w/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/wj77qk1w/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=wj77qk1w"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/wj77qk1w/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "wo77pm39",
+    "name": "Egg Dealer (Lava Shelter)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/egg-dealer-lava-shelter",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/wo77pm39"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/wo77pm39/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/wo77pm39/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/wo77pm39/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=wo77pm39"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/wo77pm39/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "d1jjqzyd",
+    "name": "Egg Dealer (Cosmic Fall)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/egg-dealer-cosmic-fall",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/d1jjqzyd"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/d1jjqzyd/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/d1jjqzyd/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/d1jjqzyd/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=d1jjqzyd"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/d1jjqzyd/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "dqzzkmgd",
+    "name": "Black Doom (Cosmic Fall)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/black-doom-cosmic-fall",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/dqzzkmgd"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/dqzzkmgd/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/dqzzkmgd/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/dqzzkmgd/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=dqzzkmgd"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/dqzzkmgd/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "wkkk7mxw",
+    "name": "Diablon (Final Haunt)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/diablon-final-haunt",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/wkkk7mxw"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/wkkk7mxw/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/wkkk7mxw/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/wkkk7mxw/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=wkkk7mxw"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/wkkk7mxw/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "d7yymjed",
+    "name": "Black Doom (Final Haunt)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/black-doom-final-haunt",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/d7yymjed"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/d7yymjed/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/d7yymjed/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/d7yymjed/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=d7yymjed"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/d7yymjed/zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "9200766d",
+    "name": "Devil Doom",
+    "weblink": "http://www.speedrun.com/shadowreloaded/devil-doom",
+    "rules": "",
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/levels/9200766d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "categories",
+        "uri": "http://www.speedrun.com/api/v1/levels/9200766d/categories"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/levels/9200766d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/levels/9200766d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?level=9200766d"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/level/9200766d/zd3eqqek"
+      }
+    ]
+  }
+]

@@ -1,0 +1,198 @@
+/* About page stylesheet (scoped via #about-page) */
+
+/* Color tokens and page layout */
+#about-page {
+  --bg: #0f1720;
+  --title-and-link: #a80000;
+  --link-hover: red;
+  --nav-a-hover: #0f1720;
+  --heading: #d7ecff;
+  --accent: #1ea7ff;
+  --bold: #d8e8f8;
+  --muted: #9aa6b2;
+  --text: #b4c2ce;
+  --border-bottom: #9aa6b226;
+  background: var(--bg);
+  padding: 1rem 2.25rem;
+  /*
+    The negative top margin pulls the about section upward to visually
+    overlap the app header/navigation. This is an intentional layout choice.
+  */
+  margin-top: -2.5rem;
+}
+
+#about-page h1 {
+  font-size: 2.8rem;
+  font-weight: 1000;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: var(--title-and-link);
+  text-align: center;
+  letter-spacing: 0.03rem;
+}
+
+#about-page h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--heading);
+  margin: 0 0 0.75rem 0;
+  letter-spacing: 0.03rem;
+}
+
+#about-page p,
+#about-page li {
+  color: var(--text);
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+#about-page abbr {
+  border-bottom: 1px dotted var(--muted);
+  cursor: help;
+  font-style: italic;
+}
+
+#about-page hr {
+  height: 1px;
+  background: var(--muted);
+  opacity: 0.5;
+  margin: 1rem 0 1.5rem 0;
+  width: 100%;
+}
+
+#about-page strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+#about-page b {
+  color: var(--bold);
+  font-weight: 600;
+}
+
+#about-page ul {
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+  list-style-position: inside;
+}
+
+#about-page nav {
+  padding: 0.8rem 0 1.3rem 0;
+}
+
+#about-page nav ul {
+  font-size: 1.2rem;
+  list-style: none;
+  margin: 0.5rem 0 0 0;
+  display: flex;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#about-page nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  display: inline-block;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#about-page nav a:hover,
+#about-page nav a:focus {
+  background: var(--accent);
+  color: var(--nav-a-hover);
+}
+
+#about-page p a {
+  color: var(--title-and-link);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15rem;
+  transition: text-decoration-thickness 0.2s ease, color 0.2s ease;
+}
+
+#about-page p a:hover {
+  text-decoration-thickness: 2px;
+  color: var(--link-hover);
+}
+
+#about-page section {
+  margin: 2rem 1.1rem;
+  padding-bottom: 1rem;
+  scroll-margin-top: 4rem;
+  border-bottom: 1px solid var(--border-bottom);
+}
+
+#about-page figure {
+  margin: 1.75rem 0;
+}
+
+#about-page img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px;
+}
+
+#about-page figcaption {
+  color: var(--muted);
+  line-height: 1.5;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  padding: 0.5rem 0;
+  margin-right: auto;
+}
+
+/* Mobile (<= 50rem / 800 px) */
+@media (max-width: 50rem) {
+  #about-page {
+    padding: 1rem 0.75rem;
+    margin-top: -1.25rem;
+  }
+
+  #about-page h1 { font-size: 2rem; }
+  #about-page h2 { font-size: 1.5rem; }
+
+  #about-page p,
+  #about-page li {
+    font-size: 1.05rem;
+    line-height: 1.55;
+  }
+
+  #about-page section {
+    margin: 1.1rem 0.6rem;
+    padding-bottom: 0.75rem;
+  }
+
+  #about-page nav ul {
+    gap: 0.75rem;
+    justify-content: center;
+  }
+  #about-page nav a {
+    padding: 0.6rem 0.9rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+
+  #about-page img {
+    border-radius: 12px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  #about-page nav a:focus,
+  #about-page p a:focus {
+    outline: 3px solid #1ea7ff2e;
+    outline-offset: 3px;
+  }
+}

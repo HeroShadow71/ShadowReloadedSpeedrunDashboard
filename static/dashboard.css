@@ -1,0 +1,42 @@
+/* Dashboard stylesheet: small widget layout and theme tweaks */
+:root {
+    --hoverColor: #ae0000;
+}
+
+#title-logo {
+    width:50%; 
+    height:auto; 
+    display:block; 
+    margin: -2.3rem auto -3rem auto;
+}
+
+.stButton button {
+    margin-right: 4rem;
+    border-radius: 15px;
+}
+
+.stRadio label {
+    padding: 0.4rem 0.9rem;
+    margin-right: 2.5rem
+}
+
+.stRadio label:last-child {
+    margin-right: 0;
+}
+
+.stButton:hover,
+.stRadio div label:hover,
+.stCheckbox:hover,
+.stSelectbox div div:hover {
+    background-color: var(--hoverColor);
+    border-radius: 15px;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.stSelectbox div div:hover {
+    border-radius: 10px;
+}
+
+.stCheckbox {
+    padding: 0.4rem 0.9rem;
+}

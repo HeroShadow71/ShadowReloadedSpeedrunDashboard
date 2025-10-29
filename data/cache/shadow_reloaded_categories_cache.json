@@ -1,0 +1,556 @@
+[
+  {
+    "id": "zd3eqqek",
+    "name": "Dark",
+    "weblink": "http://www.speedrun.com/shadowreloaded",
+    "type": "per-level",
+    "rules": "- This category is for Dark missions only. If a level does not have a Dark mission, do not submit to it.\n- If you do something in a prior life/restart that affects the next run, the recording must include the entire duration of that prior attempt (starting at 00:00.00). Example: Invincibility power up will persist the music, invulnerability, and infinite ammo even on level restarts. If my recording only shows my IL time without showing how the invincibility power up was achieved it would be rejected.\n- The time you submit should be the final time shown on the results screen.\n- If your in-game time ends in '00' milliseconds, check the last few frames to ensure the seconds values properly reflect the actual in-game time. Ex: \"5.98, 5.99, 6.00\" -> GOOD, submit 6. \"5.98, 5.99, 5.00\" -> BAD, submit 6 instead of 5. This is due to a rounding bug exclusive to Reloaded 1.2.\n\n- Video proof is required for all times. Video must show the entire attempt from the start of the timer to the end of the mission. No splicing checkpoints spawns.",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/zd3eqqek"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/zd3eqqek/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/zd3eqqek/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=zd3eqqek"
+      }
+    ]
+  },
+  {
+    "id": "9kvznned",
+    "name": "Normal",
+    "weblink": "http://www.speedrun.com/shadowreloaded",
+    "type": "per-level",
+    "rules": "- This category is for Normal missions only. If a level does not have a Normal mission, do not submit to it.\n- If you do something in a prior life/restart that affects the next run, the recording must include the entire duration of that prior attempt (starting at 00:00.00). Example: Invincibility power up will persist the music, invulnerability, and infinite ammo even on level restarts. If my recording only shows my IL time without showing how the invincibility power up was achieved it would be rejected.\n- The time you submit should be the final time shown on the results screen.\n- If your in-game time ends in '00' milliseconds, check the last few frames to ensure the seconds values properly reflect the actual in-game time. Ex: \"5.98, 5.99, 6.00\" -> GOOD, submit 6. \"5.98, 5.99, 5.00\" -> BAD, submit 6 instead of 5. This is due to a rounding bug exclusive to Reloaded 1.2.\n\n- Video proof is required for all times. Video must show the entire attempt from the start of the timer to the end of the mission. No splicing checkpoints spawns.",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/9kvznned"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/9kvznned/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/9kvznned/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=9kvznned"
+      }
+    ]
+  },
+  {
+    "id": "rklynn6d",
+    "name": "Hero",
+    "weblink": "http://www.speedrun.com/shadowreloaded",
+    "type": "per-level",
+    "rules": "- This category is for Hero missions only. If a level does not have a Hero mission, do not submit to it.\n- If you do something in a prior life/restart that affects the next run, the recording must include the entire duration of that prior attempt (starting at 00:00.00). Example: Invincibility power up will persist the music, invulnerability, and infinite ammo even on level restarts. If my recording only shows my IL time without showing how the invincibility power up was achieved it would be rejected.\n- The time you submit should be the final time shown on the results screen.\n- If your in-game time ends in '00' milliseconds, check the last few frames to ensure the seconds values properly reflect the actual in-game time. Ex: \"5.98, 5.99, 6.00\" -> GOOD, submit 6. \"5.98, 5.99, 5.00\" -> BAD, submit 6 instead of 5. This is due to a rounding bug exclusive to Reloaded 1.2.\n\n- Video proof is required for all times. Video must show the entire attempt from the start of the timer to the end of the mission. No splicing checkpoints spawns.",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/rklynn6d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/rklynn6d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/rklynn6d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=rklynn6d"
+      }
+    ]
+  },
+  {
+    "id": "ndxqnnok",
+    "name": "Expert",
+    "weblink": "http://www.speedrun.com/shadowreloaded",
+    "type": "per-level",
+    "rules": "- This category is for completing Expert mission only. You can access Expert missions within Select Mode by loading a level with \"X\" rather than \"A\".\n- If you do something in a prior life/restart that affects the next run, the recording must include the entire duration of that prior attempt (starting at 00:00.00). Example: Invincibility power up will persist the music, invulnerability, and infinite ammo even on level restarts. If my recording only shows my IL time without showing how the invincibility power up was achieved it would be rejected.\n- The time you submit should be the final time shown as the fade out begins when clearing a stage.\n- If your in-game time ends in '00' milliseconds, check the last few frames to ensure the seconds values properly reflect the actual in-game time. Ex: \"5.98, 5.99, 6.00\" -> GOOD, submit 6. \"5.98, 5.99, 5.00\" -> BAD, submit 6 instead of 5. This is due to a rounding bug exclusive to Reloaded 1.2.\n\n- Video proof is required for all times. Video must show the entire attempt from the start of the timer to the end of the mission. No splicing checkpoints spawns.",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/ndxqnnok"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/ndxqnnok/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/ndxqnnok/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=ndxqnnok"
+      }
+    ]
+  },
+  {
+    "id": "zdn9yon2",
+    "name": "Planted Memories (147)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/full_game#planted-memories-147",
+    "type": "per-game",
+    "rules": "Run recordings should start at the Story Mode screen before you select NEW.\n\nRun recordings must show the \"Total Run Time\" message that appears after credits.\n\nThere is a known timing bug in Egg Dealer where 2 seconds is added to the total time. This additional time is not reflected in the Total Run Time message.\n\nYou are only allowed to complete Route 147, \"Planted Memories\".\n\nThe route is NNDNHD.\n\n![](/static/blob/xz0508mn.jpg)",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/zdn9yon2"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/zdn9yon2/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/zdn9yon2/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=zdn9yon2"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/category/zdn9yon2"
+      }
+    ]
+  },
+  {
+    "id": "jdzznrrd",
+    "name": "Despair's Quickening (243)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/full_game#imprisoned-by-the-past-060",
+    "type": "per-game",
+    "rules": "Run recordings should start at the Story Mode screen before you select NEW.\n\nRun recordings must show the \"Total Run Time\" message that appears after credits.\n\nYou are only allowed to complete Route 243, \"Despair's Quickening\".\n\nThe route is HDDHDD.\n\n![](/static/blob/ynl2370e.jpg)",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/jdzznrrd"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/jdzznrrd/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/jdzznrrd/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=jdzznrrd"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/category/jdzznrrd"
+      }
+    ]
+  },
+  {
+    "id": "02qzre72",
+    "name": "Wandering's End (186)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/full_game#wandering-s-end-186",
+    "type": "per-game",
+    "rules": "Run recordings should start at the Story Mode screen before you select NEW.\n\nRun recordings must show the \"Total Run Time\" message that appears after credits.\n\nYou are only allowed to complete Route 186, \"Wandering's End\".\n\nThe route is NNHHNH.\n\n![](/static/blob/7n64q24z.jpg)",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/02qzre72"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/02qzre72/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/02qzre72/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=02qzre72"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/category/02qzre72"
+      }
+    ]
+  },
+  {
+    "id": "z27jv542",
+    "name": "Punishment, Thy Name is Ruin (001)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/full_game#only-dark-missions",
+    "type": "per-game",
+    "rules": "Run recordings should start at the Story Mode screen before you select NEW.\n\nRun recordings must show the \"Total Run Time\" message that appears after credits.\n\nYou are only allowed to complete Route 001, \"Punishment, Thy Name is Ruin\".\n\nThe route is DDDDDD.\n\n![](/static/blob/kzwr312e.jpg)",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/z27jv542"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/z27jv542/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/z27jv542/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=z27jv542"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/category/z27jv542"
+      }
+    ]
+  },
+  {
+    "id": "9d89l5w2",
+    "name": "A New Empire's Beginning (164)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/full_game#a-new-empire-s-beginning-164",
+    "type": "per-game",
+    "rules": "Run recordings should start at the Story Mode screen before you select NEW.\n\nRun recordings must show the \"Total Run Time\" message that appears after credits.\n\nThere is a known timing bug in Egg Dealer where 2 seconds is added to the total time. This additional time is not reflected in the Total Run Time message.\n\nYou are only allowed to complete Route 164, \"A New Empire's Beginning\".\n\nThe route is NNNNNH.\n\n![](/static/blob/xzd4715z.jpg)",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/9d89l5w2"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/9d89l5w2/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/9d89l5w2/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=9d89l5w2"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/category/9d89l5w2"
+      }
+    ]
+  },
+  {
+    "id": "jdr4nwn2",
+    "name": "A Missive from 50 Years Ago (326)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/full_game#a-missive-from-50-years-ago-326",
+    "type": "per-game",
+    "rules": "Run recordings should start at the Story Mode screen before you select NEW.\n\nRun recordings must show the \"Total Run Time\" message that appears after credits.\n\nYou are only allowed to complete Route 326, \"A Missive from 50 Years Ago\".\n\nThe route is HHHHHH.\n\n![](/static/blob/1n5764qe.jpg)",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/jdr4nwn2"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/jdr4nwn2/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/jdr4nwn2/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=jdr4nwn2"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/category/jdr4nwn2"
+      }
+    ]
+  },
+  {
+    "id": "82448qe2",
+    "name": "Excess of Intellect (041)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/full_game#the-last-soldier-s-grim-fate-029",
+    "type": "per-game",
+    "rules": "Run recordings should start at the Story Mode screen before you select NEW.\n\nRun recordings must show the \"Total Run Time\" message that appears after credits.\n\nThere is a known timing bug in Egg Dealer where 2 seconds is added to the total time. This additional time is not reflected in the Total Run Time message.\n\nYou are only allowed to complete Route 041, \"Excess of Intellect\".\n\nThe route is DDHHND.\n\n![](/static/blob/7e9jvg3n.jpg)",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/82448qe2"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/82448qe2/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/82448qe2/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=82448qe2"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/category/82448qe2"
+      }
+    ]
+  },
+  {
+    "id": "vdol0r9d",
+    "name": "Coffin of Memories (323)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/full_game#coffin-of-memories-323",
+    "type": "per-game",
+    "rules": "Run recordings should start at the Story Mode screen before you select NEW.\n\nRun recordings must show the \"Total Run Time\" message that appears after credits.\n\nThere is a known timing bug in Egg Dealer where 2 seconds is added to the total time. This additional time is not reflected in the Total Run Time message.\n\nYou are only allowed to complete Route 323, \"Coffin of Memories\".\n\nThe route is HHHHND.\n\n![](/static/blob/7n63vwon.png)",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/vdol0r9d"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/vdol0r9d/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/vdol0r9d/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=vdol0r9d"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/category/vdol0r9d"
+      }
+    ]
+  },
+  {
+    "id": "wdm3zn3k",
+    "name": "The Summit of Power (217)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/full_game#expert-mode-android",
+    "type": "per-game",
+    "rules": "Run recordings should start at the Story Mode screen before you select NEW.\n\nRun recordings must show the \"Total Run Time\" message that appears after credits.\n\nThere is a known timing bug in Egg Dealer where 2 seconds is added to the total time. This additional time is not reflected in the Total Run Time message.\n\nYou are only allowed to complete Route 217, \"The Summit of Power\".\n\nThe route is NHNNHD.\n\n![](/static/blob/5ngg9yjn.png)\n\n![](https://cdn.discordapp.com/attachments/1038583745151778969/1343693737225752637/summit.png?ex=67be33cf&is=67bce24f&hm=e852483ae887aefe9590d7be816ce3f2c1aca806c2de82d56538f89f9a617ae0&=)",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/wdm3zn3k"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/wdm3zn3k/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/wdm3zn3k/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=wdm3zn3k"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/category/wdm3zn3k"
+      }
+    ]
+  },
+  {
+    "id": "wdm3q6xk",
+    "name": "To Love Oneself (064)",
+    "weblink": "http://www.speedrun.com/shadowreloaded/full_game#expert-mode-gun-android",
+    "type": "per-game",
+    "rules": "Run recordings should start at the Story Mode screen before you select NEW.\n\nRun recordings must show the \"Total Run Time\" message that appears after credits.\n\nThere is a known timing bug in Egg Dealer where 2 seconds is added to the total time. This additional time is not reflected in the Total Run Time message.\n\nYou are only allowed to complete Route 064, \"To Love Oneself\".\n\nThe route is DHNDNH.\n\n![](/static/blob/pzm9y6yn.png)",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/wdm3q6xk"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/wdm3q6xk/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/wdm3q6xk/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=wdm3q6xk"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/category/wdm3q6xk"
+      }
+    ]
+  },
+  {
+    "id": "xd1p5wzd",
+    "name": "Expert Mode",
+    "weblink": "http://www.speedrun.com/shadowreloaded/full_game#expert-mode",
+    "type": "per-game",
+    "rules": "Timing begins after selecting \"New\" in the Expert Mode Menu and ends after The Last Way is completed.\n\nRun recordings should start at the Main Menu screen, before you select \"New\".\n\nRun recordings must show the \"Total Run Time\" message that appears after credits.",
+    "players": {
+      "type": "up-to",
+      "value": 1
+    },
+    "miscellaneous": false,
+    "links": [
+      {
+        "rel": "self",
+        "uri": "http://www.speedrun.com/api/v1/categories/xd1p5wzd"
+      },
+      {
+        "rel": "game",
+        "uri": "http://www.speedrun.com/api/v1/games/o1y3y346"
+      },
+      {
+        "rel": "variables",
+        "uri": "http://www.speedrun.com/api/v1/categories/xd1p5wzd/variables"
+      },
+      {
+        "rel": "records",
+        "uri": "http://www.speedrun.com/api/v1/categories/xd1p5wzd/records"
+      },
+      {
+        "rel": "runs",
+        "uri": "http://www.speedrun.com/api/v1/runs?category=xd1p5wzd"
+      },
+      {
+        "rel": "leaderboard",
+        "uri": "http://www.speedrun.com/api/v1/leaderboards/o1y3y346/category/xd1p5wzd"
+      }
+    ]
+  }
+]
