@@ -210,15 +210,28 @@ def _format_places_for_display(table_df):
     # Stable sort for display
     table_df = table_df.sort_values(["primary_t", "date"], na_position="last")
 
-    # Initialize columns
-    table_df["place_numeric"] = table_df["place"].astype("Int64")
+    # Decide grouping columns that mirror ranking scope used upstream
+    # Keep level_name and category_name if present so ranks are computed per-level/category/character
+    group_cols = [col for col in ("level_name", "category_name", "character_name") if col in table_df.columns]
 
-    # Mask non-obsolete rows
-    mask_obsolete = table_df["obsolete"].astype(bool)
+    # Compute rank among visible non-obsolete rows
+    mask_non_obsolete = ~table_df["obsolete"].astype(bool)
 
-    # Fill text display
+    # Initialize place_numeric with missing values
+    table_df["place_numeric"] = pd.NA
+
+    if mask_non_obsolete.any():
+        ranks = (
+            table_df.loc[mask_non_obsolete]
+            .groupby(group_cols, observed=False)["primary_t"]
+            .rank(method="min", ascending=True)
+            .astype("Int64")
+        )
+        table_df.loc[mask_non_obsolete, "place_numeric"] = ranks
+
+    # Prepare display column
     table_df["place"] = table_df["place_numeric"].astype(str)
-    table_df.loc[mask_obsolete, "place"] = "Obsolete"
+    table_df.loc[table_df["obsolete"].astype(bool), "place"] = "Obsolete"
 
     return table_df
 

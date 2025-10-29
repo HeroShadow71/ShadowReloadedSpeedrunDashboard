@@ -25,6 +25,10 @@ def render_table(table_df):
 
     :param table_df: prepared table DataFrame
     """
+    if table_df.empty:
+        st.warning("No data available for this selection.")
+        return None
+    
     table_cols = ["place", "player_name", "time_fmt", "note_name", "date", "weblink", "id"]
     table_cols = [c for c in table_cols if c in table_df.columns]
     table_df = table_df[table_cols].rename(
@@ -70,7 +74,7 @@ def plot_pb_progression(chart_df, trace_col, pb_char_note_label):
     :param pb_char_note_label: label for character-note traces
     :return: Plotly Figure (`fig`) or `None` when no data
     """
-    if chart_df is None:
+    if chart_df.empty:
         st.warning("No PB data for this selection.")
         return None
 
