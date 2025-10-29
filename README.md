@@ -8,7 +8,7 @@ Some filters, a table and some charts.
 
 Create the virtual environment
 
-    python -m venv 
+    python -m venv venv
 
 Activate it
 
