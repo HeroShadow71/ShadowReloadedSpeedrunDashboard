@@ -248,6 +248,7 @@ def plot_wr_count(df):
 
     fig.update_traces(textinfo="label+percent",
         hovertemplate="%{label}<br>WRs: %{value}<br>Percent: %{percent}",
+        automargin=True
     )
     
     fig.update_layout(
@@ -256,6 +257,13 @@ def plot_wr_count(df):
         font=dict(size=17),
         hoverlabel=dict(font_size=16),
         height=600,
+            legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=-0.2,
+        xanchor="center",
+        x=0.5
+    )
     )
     return fig
 
