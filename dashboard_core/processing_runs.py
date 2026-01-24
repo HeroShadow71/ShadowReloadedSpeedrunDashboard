@@ -125,7 +125,29 @@ def process_runs():
     if mask_full_game.any():
         full_game_idx = df.index[mask_full_game]
         full_game_df = df.loc[full_game_idx].copy()
-        mark_obsolete_and_place(full_game_df, ["category", "character"])
+        
+        # Get Story Mode and Unlock Shadow Rifle category IDs from the categories list
+        story_mode_id = next((cat["id"] for cat in categories if cat["name"] == "Story Mode"), None)
+        unlock_rifle_id = next((cat["id"] for cat in categories if cat["name"] == "Unlock Shadow Rifle"), None)
+        
+        # Separate Story Mode/Unlock Shadow Rifle (with subcategories) from others
+        mask_with_subcat = full_game_df["category"].isin([story_mode_id, unlock_rifle_id])
+        
+        # Process runs with subcategories (include subcategory_name in grouping)
+        if mask_with_subcat.any():
+            subcat_idx = full_game_df.index[mask_with_subcat]
+            subcat_df = full_game_df.loc[subcat_idx].copy()
+            mark_obsolete_and_place(subcat_df, ["category", "character", "subcategory_name"])
+            full_game_df.loc[subcat_idx, ["obsolete", "place"]] = subcat_df[["obsolete", "place"]]
+        
+        # Process runs without subcategories (don't include subcategory_name)
+        mask_no_subcat = ~mask_with_subcat
+        if mask_no_subcat.any():
+            no_subcat_idx = full_game_df.index[mask_no_subcat]
+            no_subcat_df = full_game_df.loc[no_subcat_idx].copy()
+            mark_obsolete_and_place(no_subcat_df, ["category", "character"])
+            full_game_df.loc[no_subcat_idx, ["obsolete", "place"]] = no_subcat_df[["obsolete", "place"]]
+        
         df.loc[full_game_idx, ["obsolete", "place"]] = full_game_df[["obsolete", "place"]]
 
     # Drop intermediate id columns
