@@ -111,9 +111,15 @@ def render_selection_controls(df, scope):
                 subcat_ph = st.empty()
                 subcategory_options = get_subcategory_options(df, category_name)
                 if subcategory_options:
+                    # Use appropriate label based on category
+                    if category_name == "Story Mode":
+                        label = "Select Ending"
+                    elif category_name == "Unlock Shadow Rifle":
+                        label = "Select Ruleset"
+                    
                     subcategory_name = _render_select_widget(
                         subcat_ph,
-                        f"Select {category_name} Option",
+                        label,
                         subcategory_options,
                         key="subcategory_select"
                     )
