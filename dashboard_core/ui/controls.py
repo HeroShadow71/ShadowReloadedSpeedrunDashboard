@@ -10,7 +10,8 @@ import pandas as pd
 from constants import LEVEL_ORDER, BOSS_ORDER, CATEGORY_ORDER, CHARACTER_ORDER, CHART_VIEWS
 from dashboard_core.ui.ui_utils import (
     get_scope_options, get_level_or_boss_options,
-    get_category_options, get_character_note_options, get_player_options
+    get_category_options, get_character_note_options, get_player_options,
+    get_subcategory_options
 )
 
 
@@ -63,6 +64,7 @@ def render_selection_controls(df, scope):
     
         - level_name;
         - category_name; 
+        - subcategory_name;
         - view_type;
         - player_selection;
         - character_selected;
@@ -75,10 +77,10 @@ def render_selection_controls(df, scope):
             col_view_vis, _ = st.columns([2, 3])
             view_ph = col_view_vis.empty()
             view_type = view_ph.selectbox("Select view", ["Table"] + CHART_VIEWS, key="view_type")
-        return None, None, view_type, "All Players", [], "All", True
+        return None, None, None, view_type, "All Players", [], "All", True
 
     with st.container(border=True):
-    # Level/category selectors
+        # Level/category selectors
         with st.container():
             col1, col2 = st.columns((2, 3))
             # Level/Boss selector
@@ -101,6 +103,20 @@ def render_selection_controls(df, scope):
                     cat_ph = col1.empty()
                     category_options = get_category_options(df, scope)
                     category_name = _render_select_widget(cat_ph, "Select Category", category_options, key="category_select")
+
+        # Subcategory selector (only for Full Game scope with Story Mode or Unlock Shadow Rifle)
+        subcategory_name = None
+        if scope == "Full Game" and category_name in ("Story Mode", "Unlock Shadow Rifle"):
+            with st.container():
+                subcat_ph = st.empty()
+                subcategory_options = get_subcategory_options(df, category_name)
+                if subcategory_options:
+                    subcategory_name = _render_select_widget(
+                        subcat_ph,
+                        f"Select {category_name} Option",
+                        subcategory_options,
+                        key="subcategory_select"
+                    )
 
         # Reserve placeholders for stable layout
         col_char_visual, col_note_visual = st.columns((2, 3))
@@ -152,7 +168,7 @@ def render_selection_controls(df, scope):
     else:
         show_obsolete = True
 
-    return level_name, category_name, view_type, player_selection, character_selected, note_selected, show_obsolete
+    return level_name, category_name, subcategory_name, view_type, player_selection, character_selected, note_selected, show_obsolete
 
 
 def _render_select_widget(ph, label, options, key, multiselect=False, default_all=False, always_list=False):

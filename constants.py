@@ -50,6 +50,8 @@ COOLDOWN_SECONDS = 7200
 # Speedrun.com variable IDs used by the app
 NOTE_KEY = "68kwme38"
 CHARACTER_KEY = "38dgox08"
+STORY_MODE_ENDING_VAR_ID = "gnxq5xx8"
+UNLOCK_RIFLE_RULESET_VAR_ID = "wl34pz68"
 
 # Manual mappings and ordering used by selection controls
 CHAR_MAP = {
@@ -61,6 +63,11 @@ CHAR_MAP = {
 NOTE_MAP = {
     "qvvz0dwq": "No SG",
     "le2v08zl": "SG"
+}
+
+UNLOCK_RIFLE_VAR_MAP = {
+    "qj7v6egq": "Any%",
+    "q65n9g7l": "Restricted"
 }
 
 LEVEL_ORDER = [
@@ -80,11 +87,40 @@ BOSS_ORDER = [
 ]
 
 CATEGORY_ORDER = [
-    "Dark", "Normal", "Hero", "Expert", "Planted Memories (147)", "Despair's Quickening (243)", "Wandering's End (186)",
-    "Punishment, Thy Name is Ruin (001)", "A New Empire's Beginning (164)", "A Missive from 50 Years Ago (326)",
-    "Excess of Intellect (041)", "Coffin of Memories (323)", "The Summit of Power (217)", "To Love Oneself (064)",
-    "Expert Mode"
+    "Dark", "Normal", "Hero", "Expert", "Story Mode", "Expert Mode", "Unlock Shadow Rifle", "SOON TOO"
 ]
+
+STORY_MODE_ENDING_ORDER = [
+    "Planted Memories (147 - NNDNHD)",
+    "Despair's Quickening (243 - HDDHDD)",
+    "Wandering's End (186 - NNHHNH)",
+    "Punishment, Thy Name is Ruin (001 - DDDDDD)",
+    "A New Empire's Beginning (164 - NNNNNH)",
+    "A Missive from 50 Years Ago (326 - HHHHHH)",
+    "Excess of Intellect (041 - DDHHND)",
+    "Coffin of Memories (323 - HHHHND)",
+    "The Summit of Power (217 - NHNNHD)",
+    "To Love Oneself (064 - DHNDNH)"
+]
+
+UNLOCK_RIFLE_RULESET_ORDER = [
+    "Any%",
+    "Restricted"
+]
+
+# Story Mode subcategory endings (variable ID: gnxq5xx8)
+STORY_MODE_ENDING_MAP = {
+    "1dkz06pl": "Planted Memories (147 - NNDNHD)",
+    "q8k6y4yq": "Despair's Quickening (243 - HDDHDD)",
+    "qyzp0761": "Wandering's End (186 - NNHHNH)",
+    "ln8wxeol": "Punishment, Thy Name is Ruin (001 - DDDDDD)",
+    "10vz40ol": "A New Empire's Beginning (164 - NNNNNH)",
+    "qj703w7q": "A Missive from 50 Years Ago (326 - HHHHHH)",
+    "q650dyvl": "Excess of Intellect (041 - DDHHND)",
+    "lmok5881": "Coffin of Memories (323 - HHHHND)",
+    "1w4pyemq": "The Summit of Power (217 - NHNNHD)",
+    "qoxp4m5q": "To Love Oneself (064 - DHNDNH)"
+}
 
 CHARACTER_ORDER = ["Shadow", "Gun Android", "Cannon Android"]
 

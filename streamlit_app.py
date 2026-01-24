@@ -68,7 +68,7 @@ def main():
         scope = render_scope_controls()
 
         (
-            level_name, category_name,
+            level_name, category_name, subcategory_name,
             view_type, player_selection,
             character_selected, note_selected,
             show_obsolete
@@ -79,6 +79,7 @@ def main():
         scope,
         level_name,
         category_name,
+        subcategory_name,
         character_selected,
         note_selected,
         show_obsolete,

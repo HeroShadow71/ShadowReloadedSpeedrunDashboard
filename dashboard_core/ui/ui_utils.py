@@ -10,6 +10,7 @@ import pandas as pd
 from constants import (
     APP_FILE, ABOUT_PAGE_FILE,
     LEVEL_ORDER, BOSS_ORDER, CATEGORY_ORDER, CHARACTER_ORDER,
+    STORY_MODE_ENDING_ORDER, UNLOCK_RIFLE_RULESET_ORDER,
 )
 
 
@@ -84,6 +85,31 @@ def get_character_note_options(df):
     return character_options, note_options
 
 
+def get_subcategory_options(df, category_name):
+    """
+    Return subcategory options for the given category in configured order.
+
+    Only Story Mode and Unlock Shadow Rifle categories have subcategories.
+    For other categories, returns an empty list.
+
+    :param df: source runs DataFrame
+    :param category_name: the selected category name
+    :return: ordered list of subcategory names
+    """
+    if category_name not in ("Story Mode", "Unlock Shadow Rifle"):
+        return []
+    
+    # Filter for Full Game runs of the selected category
+    mask = (df["level_name"].isna()) & (df["category_name"] == category_name)
+    available_subcategories = set(df.loc[mask, "subcategory_name"].dropna().unique())
+    
+    # Return subcategories in configured order, filtered to only those available
+    if category_name == "Story Mode":
+        return [sub for sub in STORY_MODE_ENDING_ORDER if sub in available_subcategories]
+    else:  # Unlock Shadow Rifle
+        return [sub for sub in UNLOCK_RIFLE_RULESET_ORDER if sub in available_subcategories]
+
+
 def get_player_options(df, scope, level_name=None, category_name=None):
     """
     Return player options filtered by scope, level and category.
@@ -114,6 +140,7 @@ def prepare_table_df(
     scope,
     level_name,
     category_name,
+    subcategory_name,
     character_selected,
     note_selected,
     show_obsolete,
@@ -129,6 +156,7 @@ def prepare_table_df(
     :param scope: scope selection string
     :param level_name: level name when applicable
     :param category_name: category name
+    :param subcategory_name: subcategory name (for Story Mode/Unlock Shadow Rifle)
     :param character_selected: selected characters
     :param note_selected: selected note (or `"All"`)
     :param show_obsolete: if True, include obsolete runs
@@ -136,7 +164,7 @@ def prepare_table_df(
     :return: `table_df`, a copy of the DataFrame filtered and formatted for table display
     """
     filtered_df = _filter_runs_for_display(
-        df, scope, level_name, category_name, character_selected, note_selected, show_obsolete
+        df, scope, level_name, category_name, subcategory_name, character_selected, note_selected, show_obsolete
     )
     table_df = _format_places_for_display(filtered_df)
 
@@ -152,6 +180,7 @@ def _filter_runs_for_display(
     scope,
     level_name,
     category,
+    subcategory,
     character_selected,
     note_selected,
     show_obsolete,
@@ -166,6 +195,7 @@ def _filter_runs_for_display(
     :param scope: scope selection string
     :param level_name: level name when required by scope
     :param category: category name to filter by
+    :param subcategory: subcategory name (for Story Mode/Unlock Shadow Rifle)
     :param character_selected: character selection list
     :param note_selected: selected note (or `"All"`)
     :param show_obsolete: include obsolete runs when True
@@ -183,6 +213,10 @@ def _filter_runs_for_display(
         mask &= (df["level_name"] == level_name) & (df["category_name"] == category)
     else:
         mask &= df["category_name"] == category
+
+    # Apply subcategory filter if provided
+    if subcategory is not None:
+        mask &= df["subcategory_name"] == subcategory
 
     # Character filter (empty selection -> empty frame)
     if character_selected:

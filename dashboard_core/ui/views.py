@@ -258,12 +258,12 @@ def plot_wr_count(df):
         hoverlabel=dict(font_size=16),
         height=600,
             legend=dict(
-        orientation="h",
-        yanchor="bottom",
-        y=-0.2,
-        xanchor="center",
-        x=0.5
-    )
+                orientation="h",
+                yanchor="bottom",
+                y=-0.2,
+                xanchor="center",
+                x=0.5
+            )
     )
     return fig
 

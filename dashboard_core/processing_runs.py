@@ -10,7 +10,8 @@ from constants import (
     GAME_ID,
     PLAYER_CACHE_FILE, CATEGORY_CACHE_FILE, LEVEL_CACHE_FILE,
     CHAR_MAP, NOTE_MAP,
-    NOTE_KEY, CHARACTER_KEY,
+    NOTE_KEY, CHARACTER_KEY, UNLOCK_RIFLE_VAR_MAP, STORY_MODE_ENDING_MAP,
+    STORY_MODE_ENDING_VAR_ID, UNLOCK_RIFLE_RULESET_VAR_ID
 )
 from dashboard_core.fetch_runs import fetch_verified_runs
 from dashboard_core.api_utils import fetch_api_cached
@@ -30,6 +31,7 @@ def process_runs():
     expected_cols = [
         "id", "weblink", "category", "level", "player_id",
         "date", "primary_t", "note", "character", "submitted",
+        "story_mode_ending", "unlock_rifle_ruleset"
     ]
 
     # Normalize API run objects into row dicts with the columns needed
@@ -52,7 +54,9 @@ def process_runs():
                 "primary_t": run["times"]["primary_t"],
                 "note": run["values"][NOTE_KEY],
                 "character": run["values"][CHARACTER_KEY],
-                "submitted": run["submitted"]
+                "submitted": run["submitted"],
+                "story_mode_ending": run["values"].get(STORY_MODE_ENDING_VAR_ID),
+                "unlock_rifle_ruleset": run["values"].get(UNLOCK_RIFLE_RULESET_VAR_ID)
             }
         )
 
@@ -94,6 +98,11 @@ def process_runs():
 
     safe_write_json(PLAYER_CACHE_FILE, player_map)
 
+    # Map subcategory IDs to readable names
+    df["subcategory_name"] = pd.NA
+    df.loc[df["story_mode_ending"].notna(), "subcategory_name"] = df.loc[df["story_mode_ending"].notna(), "story_mode_ending"].map(STORY_MODE_ENDING_MAP)
+    df.loc[df["unlock_rifle_ruleset"].notna(), "subcategory_name"] = df.loc[df["unlock_rifle_ruleset"].notna(), "unlock_rifle_ruleset"].map(UNLOCK_RIFLE_VAR_MAP)
+    
     # Convert ID columns to readable columns
     df["player_name"] = df["player_id"].map(player_map)
     df["character_name"] = df["character"].map(CHAR_MAP)
@@ -120,7 +129,7 @@ def process_runs():
         df.loc[full_game_idx, ["obsolete", "place"]] = full_game_df[["obsolete", "place"]]
 
     # Drop intermediate id columns
-    df.drop(columns=["category", "level", "player_id", "character", "note"], inplace=True)
+    df.drop(columns=["category", "level", "player_id", "character", "note", "story_mode_ending", "unlock_rifle_ruleset"], inplace=True)
 
     # Ensure 'date' and 'submitted' are datetimelike
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
