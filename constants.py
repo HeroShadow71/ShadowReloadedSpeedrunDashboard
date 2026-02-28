@@ -45,7 +45,7 @@ API_PAGE_SIZE = 200
 API_TIMEOUT = 10
 
 # Refresh interval (seconds)
-COOLDOWN_SECONDS = 7200
+COOLDOWN_SECONDS = 3600
 
 # Speedrun.com variable IDs used by the app
 NOTE_KEY = "68kwme38"
@@ -87,7 +87,7 @@ BOSS_ORDER = [
 ]
 
 CATEGORY_ORDER = [
-    "Dark", "Normal", "Hero", "Expert", "Story Mode", "Expert Mode", "Unlock Shadow Rifle", "SOON TOO"
+    "Dark", "Normal", "Hero", "Expert", "Story Mode", "Expert Mode", "Unlock Shadow Rifle", "100% No Library"
 ]
 
 STORY_MODE_ENDING_ORDER = [

@@ -152,18 +152,23 @@ def render_selection_controls(df, scope):
         player_ph.empty()
 
     # Character and Note selectors (multiselect only for single-player PB view)
-    character_options, note_options = get_character_note_options(df)
-    is_char_multi = (view_type == "PB Progression" and player_selection != "All Players")
+    if category_name == "100% No Library":
+        char_ph.empty()
+        character_selected = ["Shadow"]
+        _, note_options = get_character_note_options(df)
+    else:
+        character_options, note_options = get_character_note_options(df)
+        is_char_multi = (view_type == "PB Progression" and player_selection != "All Players")
 
-    character_selected = _render_select_widget(
-        char_ph,
-        "Select Characters" if is_char_multi else "Select Character",
-        character_options,
-        key=("character_multi" if is_char_multi else "character_single"),
-        multiselect=is_char_multi,
-        default_all=True,
-        always_list=True,
-    )
+        character_selected = _render_select_widget(
+            char_ph,
+            "Select Characters" if is_char_multi else "Select Character",
+            character_options,
+            key=("character_multi" if is_char_multi else "character_single"),
+            multiselect=is_char_multi,
+            default_all=True,
+            always_list=True,
+        )
 
     # Note selector
     note_selected = _render_select_widget(note_ph, "Select Note", note_options, key="note_selected")

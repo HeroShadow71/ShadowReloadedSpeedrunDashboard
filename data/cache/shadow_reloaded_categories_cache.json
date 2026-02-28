@@ -216,7 +216,7 @@
     "name": "Unlock Shadow Rifle",
     "weblink": "http://www.speedrun.com/shadowreloaded/full_game#imprisoned-by-the-past-060",
     "type": "per-game",
-    "rules": "**From a new save file, you must complete 3 different Story Mode endings, and then complete Last Story in order to unlock the Shadow Rifle.**\n\n- Run recordings should start at the \"There is no Game Data [...]\" screen at launch.\n- IGT is calculated from the sum of all missions played.\n- Run recordings must show the \"Total Run Time\" message that appears after each Story Mode and after Last Story.\n- Starting Story Mode with \"X\" instead of \"A\" or \"Start\" is prohibited. This invokes Expert layouts in Story Mode.\n- There is a known timing bug in Egg Dealer where 2 seconds is added to the total time. This additional time is not reflected in the Total Run Time message.\n- Before starting a run, be sure that both \"**MMU**\" in \"**Config > Advanced**\" and \"**Use Panic Handlers**\" in \"**Config > Interface**\" are **disabled**, otherwise you game will crash when entering Devil Doom while playing as the 2P Weapon Androids.",
+    "rules": "**From a new save file, you must complete 3 different Story Mode endings, and then complete Last Story in order to unlock the Shadow Rifle.**\n\n- Run recordings should start at the \"There is no Game Data [...]\" screen at launch.\n- IGT is calculated from the sum of all missions played.\n- Run recordings must show the \"Total Run Time\" message that appears after each Story Mode and after Last Story.\n- Starting Story Mode with \"X\" instead of \"A\" or \"Start\" is prohibited. This invokes Expert layouts in Story Mode.\n- There is a known timing bug in Egg Dealer where 2 seconds is added to the total time. This additional time is not reflected in the Total Run Time message.\n- There is a known timing bug in Devil Doom where 5 seconds is added to the total time when entering it's second phase. This additional time **IS** reflected in the Total Run Time message and should be removed from the final time when submitting.\n- Before starting a run, be sure that both \"**MMU**\" in \"**Config > Advanced**\" and \"**Use Panic Handlers**\" in \"**Config > Interface**\" are **disabled**, otherwise you game will crash when entering Devil Doom while playing as the 2P Weapon Androids.",
     "players": {
       "type": "up-to",
       "value": 1
@@ -251,10 +251,10 @@
   },
   {
     "id": "02qzre72",
-    "name": "SOON TOO",
+    "name": "100% No Library",
     "weblink": "http://www.speedrun.com/shadowreloaded/full_game#wandering-s-end-186",
     "type": "per-game",
-    "rules": "",
+    "rules": "**From a new save file, you must earn all S ranks, find all Red Rings, and unlock all level 2 special weapons.**\n\n**This includes The Last Way and Devil Doom, for a total of 73 S ranks and 115 Red Rings.**\n\n**Expert Mode is not required.**\n\n- Run recordings should start at the \"There is no Game Data [...]\" screen at launch.\n- IGT is calculated from the sum of all missions played.\n- Run recordings must show the \"Total Run Time\" message that appears after each Story Mode and after Last Story.\n- Starting Story Mode with \"X\" instead of \"A\" or \"Start\" is prohibited. This invokes Expert layouts in Story Mode.\n- There is a known timing bug in Egg Dealer where 2 seconds is added to the total time. This additional time is not reflected in the Total Run Time message.\n- There is a known timing bug in Devil Doom where 5 seconds is added to the total time when entering it's second phase. This additional time **IS** reflected in the Total Run Time message and should be removed from the final time when submitting.\n- Using L to restart a stage and reset the timer is prohibited, as it leads to an inaccurate IGT calculation.\n- Since Weapon Androids can't clear Cryptic Castle Dark and Central City Hero, they are banned from this category.",
     "players": {
       "type": "up-to",
       "value": 1
