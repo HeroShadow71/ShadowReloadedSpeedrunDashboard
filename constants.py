@@ -45,7 +45,7 @@ API_PAGE_SIZE = 200
 API_TIMEOUT = 10
 
 # Refresh interval (seconds)
-COOLDOWN_SECONDS = 3600
+COOLDOWN_SECONDS = 1800
 
 # Speedrun.com variable IDs used by the app
 NOTE_KEY = "68kwme38"

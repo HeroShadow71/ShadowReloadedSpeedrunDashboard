@@ -225,16 +225,36 @@ def plot_time_improvement(chart_df):
     return fig
 
 
-def plot_wr_count(df):
+def plot_wr_count(df, note_selected="All"):
     """
-    Create a donut of WR counts from a DataFrame with competition-style places.
-    Uses precomputed 1st-place runs.
+    Create a donut of WR counts from a DataFrame.
     
-    :param df: DataFrame expected to contain a `"place"` column
-    :return: Plotly Figure (`fig`)
+    If note_selected is "All", uses precomputed global 1st places.
+    Otherwise, re-calculates 1st places within the filtered note subset.
+    
+    :param df: source runs DataFrame
+    :param note_selected: the selected note filter (e.g., "All", "No SG")
+    :return: Plotly Figure (fig)
     """
-    wr_holders = df[df["place"] == 1]
+    plot_df = df.copy()
+
+    if note_selected == "All":
+        # Use precomputed global competition-style 1st places
+        wr_holders = plot_df[plot_df["place"] == 1]
+    else:
+        # Filter to specific note and re-calculate winners for that subset
+        plot_df = plot_df[plot_df["note_name"] == note_selected]
+        
+        # Leaderboard defined by Level, Category, Character, and Subcategory
+        group_cols = ["level_name", "category_name", "character_name", "subcategory_name"]
+        
+        # Find best time per group (dropna=False ensures Full Game runs are included)
+        best_times = plot_df.groupby(group_cols, dropna=False, observed=True)["primary_t"].transform("min")
+        wr_holders = plot_df[plot_df["primary_t"] == best_times]
+
     counts = wr_holders.groupby("player_name").size().reset_index(name="wr_count")
+    counts = counts.sort_values("wr_count", ascending=False)
+
     total_wr = counts["wr_count"].sum()
 
     fig = px.pie(
@@ -242,28 +262,28 @@ def plot_wr_count(df):
         names="player_name",
         values="wr_count",
         hole=0.25,
-        title="Current WR Counts",
+        title=f"Current WR Counts ({note_selected})",
         labels={"player_name": "Player", "wr_count": "WR count"},
     )
 
     fig.update_traces(textinfo="label+percent",
         hovertemplate="%{label}<br>WRs: %{value}<br>Percent: %{percent}",
-        automargin=True
+        automargin=False,
+        marker=dict(line=dict(color='#000000', width=1))
     )
     
     fig.update_layout(
-        annotations=[dict(text=f"Total<br>{total_wr}", x=0.5, y=0.5, showarrow=False)],
-        margin=dict(l=0, r=0, t=30, b=0),
-        font=dict(size=17),
-        hoverlabel=dict(font_size=16),
-        height=600,
-            legend=dict(
-                orientation="h",
-                yanchor="bottom",
-                y=-0.2,
-                xanchor="center",
-                x=0.5
-            )
+        showlegend=False,
+        annotations=[dict(
+            text=f"Total<br>{total_wr}",
+            x=0.5, y=0.5,
+            showarrow=False,
+            font=dict(size=20)
+        )],
+        margin=dict(l=0, r=0, t=50, b=200),
+        font=dict(size=18),
+        hoverlabel=dict(font_size=18),
+        height=800
     )
     return fig
 
@@ -336,9 +356,9 @@ def render_community_overview(df):
             legend_title_text="Character",
             margin=dict(l=0, r=0, t=35, b=0),
             dragmode="pan",
-            height=600,
+            height=650,
             font=dict(size=14),
-            hoverlabel=dict(font_size=16),
+            hoverlabel=dict(font_size=18),
         )
         st.plotly_chart(fig1, config=CONFIG)
 
@@ -371,10 +391,11 @@ def render_community_overview(df):
         )
         fig2.update_yaxes(autorange="reversed") 
         fig2.update_layout(
-            height=600,
+            height=650,
             margin=dict(l=0, r=0, t=35, b=0),
             hovermode="closest",
             dragmode= "pan",
+            hoverlabel=dict(font_size=16),
         )
         st.plotly_chart(fig2, config=CONFIG)
 
@@ -406,6 +427,47 @@ def render_community_overview(df):
             title=f"Runs per Category (Total Runs: {len(df)})",
             margin=dict(l=0, r=0, t=30, b=0),
             height=600,
-            hoverlabel=dict(font_size=17),
+            hoverlabel=dict(font_size=20),
         )
         st.plotly_chart(fig3)
+
+    # Runs per player
+    with st.expander("Runs per Player", expanded=True):
+        current_month = df["date"].dt.to_period("M").max().to_timestamp()
+
+        player_runs_counts = (
+            df.groupby("player_name", observed=False)
+            .size()
+            .reset_index(name="Runs")
+            .sort_values("Runs", ascending=False)
+        )
+
+        # Filter the dataframe to only this month, then count per player
+        df_this_month = df[df["date"].dt.to_period("M").dt.to_timestamp() == current_month]
+        month_map = df_this_month.groupby("player_name", observed=False).size()
+
+        # Add the monthly count to the table using a simple map
+        player_runs_counts["Month_Runs"] = player_runs_counts["player_name"].map(month_map).fillna(0).astype(int)
+
+        fig4 = px.bar(
+            player_runs_counts,
+            x="Runs",
+            y="player_name",
+            orientation="h",
+            template="seaborn",
+            custom_data=["Month_Runs"]
+        )
+        
+        fig4.update_traces(
+            hovertemplate="<b>%{label}</b><br>Total Runs: %{value}<br>Runs this Month: %{customdata[0]}<extra></extra>"
+        )
+        
+        fig4.update_yaxes(autorange="reversed", title="Player") 
+        fig4.update_layout(
+            height=650,
+            margin=dict(l=0, r=0, t=35, b=0),
+            hovermode="closest",
+            dragmode="pan",
+            hoverlabel=dict(font_size=16),
+        )
+        st.plotly_chart(fig4, config=CONFIG)

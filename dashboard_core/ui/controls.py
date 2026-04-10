@@ -74,10 +74,22 @@ def render_selection_controls(df, scope):
     # Quick branch for WR counts, Community Overview
     if st.session_state.get("view_type") in ("Current WR Counts", "Community Overview"):
         with st.container(border=True):
-            col_view_vis, _ = st.columns([2, 3])
+            col_view_vis, col_note_vis = st.columns([2, 3])
             view_ph = col_view_vis.empty()
+            note_ph = col_note_vis.empty()
+            
             view_type = view_ph.selectbox("Select view", ["Table"] + CHART_VIEWS, key="view_type")
-        return None, None, None, view_type, "All Players", [], "All", True
+            
+            # Note selector for overview modes
+            _, note_options = get_character_note_options(df)
+            note_selected = _render_select_widget(
+                note_ph, 
+                "Select Note Scope", 
+                note_options, 
+                key="overview_note_selected"
+            )
+            
+        return None, None, None, view_type, "All Players", [], note_selected, True
 
     with st.container(border=True):
         # Level/category selectors
