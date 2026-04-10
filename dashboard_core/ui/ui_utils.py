@@ -70,7 +70,7 @@ def get_category_options(df, scope, level_name=None):
     ]
     
 
-def get_character_note_options(df):
+def get_character_note_options(df, include_all_chars=False):
     """
     Return ordered character and note option lists.
 
@@ -81,7 +81,13 @@ def get_character_note_options(df):
     :return: tuple of (`character_options`, `note_options`)
     """
     character_options = [char for char in CHARACTER_ORDER if char in df["character_name"].dropna().unique()]
+    
+    # Only add "All" if specifically requested (for WR counts view)
+    if include_all_chars:
+        character_options = ["All"] + character_options
+        
     note_options = ["All"] + sorted(df["note_name"].dropna().unique())
+    
     return character_options, note_options
 
 
@@ -220,8 +226,16 @@ def _filter_runs_for_display(
 
     # Character filter (empty selection -> empty frame)
     if character_selected:
-        mask &= df["character_name"].isin(character_selected)
-    else:
+        if isinstance(character_selected, str):
+            # If it's a single string, only filter if it's not "All"
+            if character_selected != "All":
+                mask &= df["character_name"] == character_selected
+        else:
+            # It's a list (from multiselect), use .isin()
+            mask &= df["character_name"].isin(character_selected)
+
+    elif character_selected == []:
+        # If it's an empty list (nothing selected in multiselect), return empty
         return df.iloc[0:0]
 
     # Apply note filter unless "All" selected

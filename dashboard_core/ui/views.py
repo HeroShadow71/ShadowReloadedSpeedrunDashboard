@@ -225,7 +225,7 @@ def plot_time_improvement(chart_df):
     return fig
 
 
-def plot_wr_count(df, note_selected="All"):
+def plot_wr_count(df, character_selected= "All", note_selected="All"):
     """
     Create a donut of WR counts from a DataFrame.
     
@@ -233,17 +233,23 @@ def plot_wr_count(df, note_selected="All"):
     Otherwise, re-calculates 1st places within the filtered note subset.
     
     :param df: source runs DataFrame
-    :param note_selected: the selected note filter (e.g., "All", "No SG")
+    :param character_selected: the selected character filter ("All", "Shadow" and Androids)
+    :param note_selected: the selected note filter ("All", "No SG", "SG)
     :return: Plotly Figure (fig)
     """
     plot_df = df.copy()
 
-    if note_selected == "All":
+    if character_selected == "All" and note_selected == "All":
         # Use precomputed global competition-style 1st places
         wr_holders = plot_df[plot_df["place"] == 1]
     else:
-        # Filter to specific note and re-calculate winners for that subset
-        plot_df = plot_df[plot_df["note_name"] == note_selected]
+        # Filter to specific character
+        if character_selected != "All":
+            plot_df = plot_df[plot_df["character_name"] == character_selected]
+            
+        # Filter to specific note
+        if note_selected != "All":
+            plot_df = plot_df[plot_df["note_name"] == note_selected]
         
         # Leaderboard defined by Level, Category, Character, and Subcategory
         group_cols = ["level_name", "category_name", "character_name", "subcategory_name"]
@@ -254,15 +260,29 @@ def plot_wr_count(df, note_selected="All"):
 
     counts = wr_holders.groupby("player_name").size().reset_index(name="wr_count")
     counts = counts.sort_values("wr_count", ascending=False)
-
     total_wr = counts["wr_count"].sum()
 
+    # Dynamic title
+    active_filters = []
+    if character_selected != "All":
+        active_filters.append(character_selected)
+        
+    if note_selected != "All":
+        active_filters.append(note_selected)
+
+    if active_filters:
+        title_suffix = f" ({' - '.join(active_filters)})"
+    else:
+        title_suffix = ""
+    
+    chart_title = f"Current WR Counts{title_suffix}"
+    
     fig = px.pie(
         counts,
         names="player_name",
         values="wr_count",
         hole=0.25,
-        title=f"Current WR Counts ({note_selected})",
+        title=chart_title,
         labels={"player_name": "Player", "wr_count": "WR count"},
     )
 

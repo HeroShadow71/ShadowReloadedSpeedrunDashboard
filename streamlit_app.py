@@ -101,7 +101,7 @@ def main():
         case "Player Time Improvements":
             fig = plot_time_improvement(chart_df)
         case "Current WR Counts":
-            fig = plot_wr_count(df, note_selected=note_selected)
+            fig = plot_wr_count(df, character_selected=character_selected, note_selected=note_selected)
         case "Community Overview":
             render_community_overview(df)
 

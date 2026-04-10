@@ -72,24 +72,31 @@ def render_selection_controls(df, scope):
         - show_obsolete
     """
     # Quick branch for WR counts, Community Overview
-    if st.session_state.get("view_type") in ("Current WR Counts", "Community Overview"):
+    view_type_current = st.session_state.get("view_type")
+    if view_type_current in ("Current WR Counts", "Community Overview"):
         with st.container(border=True):
-            col_view_vis, col_note_vis = st.columns([2, 3])
-            view_ph = col_view_vis.empty()
-            note_ph = col_note_vis.empty()
+            # Only WR Counts needs the extra filter columns
+            is_wr_view = (view_type_current == "Current WR Counts")
             
-            view_type = view_ph.selectbox("Select view", ["Table"] + CHART_VIEWS, key="view_type")
+            if is_wr_view:
+                cols = st.columns([2, 2, 2])
+                view_type = cols[0].selectbox("Select view", ["Table"] + CHART_VIEWS, key="view_type")
+                
+                # Character Filter (WR only)
+                char_options, _ = get_character_note_options(df, include_all_chars=True)
+                character_selected = cols[1].selectbox("Select Character", char_options, key="wr_char_selected")
+                
+                # Note Filter (WR only)
+                _, note_options = get_character_note_options(df)
+                note_selected = cols[2].selectbox("Select Note Scope", note_options, key="wr_note_selected")
+            else:
+                # Community Overview: Only show the View selector
+                cols = st.columns([2, 3])
+                view_type = cols[0].selectbox("Select view", ["Table"] + CHART_VIEWS, key="view_type")
+                character_selected = "All"
+                note_selected = "All"
             
-            # Note selector for overview modes
-            _, note_options = get_character_note_options(df)
-            note_selected = _render_select_widget(
-                note_ph, 
-                "Select Note Scope", 
-                note_options, 
-                key="overview_note_selected"
-            )
-            
-        return None, None, None, view_type, "All Players", [], note_selected, True
+        return None, None, None, view_type, "All Players", character_selected, note_selected, True
 
     with st.container(border=True):
         # Level/category selectors
