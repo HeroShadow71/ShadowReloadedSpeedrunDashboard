@@ -50,6 +50,48 @@ def format_time_seconds(t):
         return f"{m}:{s:02d}.{frac:02d}"
     else:
         return f"{s}.{frac:02d}"
+
+
+def format_time_duration(t):
+    """
+    Convert a numeric time in seconds into a readable duration string.
+
+    This is different from format_time_seconds(): it is intended for displaying
+    total durations rather than individual run times. It uses days, hours,
+    minutes, and seconds and omits any zero-value units.
+
+    Examples:
+    - 59 seconds -> "59s"
+    - 119 seconds -> "1m 59s"
+    - 3661 seconds -> "1h 1m 1s"
+    - 138377 seconds -> "1D 14h 26m 17s"
+
+    :param t: Time in seconds.
+    :return: Formatted duration string or empty string.
+    """
+    try:
+        if pd.isna(t):
+            return ""
+        total_seconds = int(round(float(t)))
+    except Exception:
+        return ""
+
+    days, remainder = divmod(total_seconds, 86400)
+    hours, remainder = divmod(remainder, 3600)
+    minutes, seconds = divmod(remainder, 60)
+
+    parts = []
+
+    if days:
+        parts.append(f"{days}D")
+    if hours:
+        parts.append(f"{hours}h")
+    if minutes:
+        parts.append(f"{minutes}m")
+    if seconds or not parts:
+        parts.append(f"{seconds}s")
+
+    return " ".join(parts)
     
 
 def generate_time_axis_ticks(values, target_ticks=7, candidates=None):

@@ -11,9 +11,14 @@ This module provides functions to render:
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
+from datetime import timedelta
 
 from constants import CONFIG
-from dashboard_core.utils import format_time_seconds, generate_time_axis_ticks
+from dashboard_core.utils import (
+    format_time_seconds,
+    format_time_duration,
+    generate_time_axis_ticks,
+)
 
 
 def render_table(table_df):
@@ -332,7 +337,22 @@ def render_community_overview(df):
 
         fig1 = px.bar(runs_over_time, x="month", y="Runs", text="Runs")
         
-        fig1.update_xaxes(title="Month", dtick="M1", tickformat="%b %Y")
+        fig1.update_xaxes(
+            title="Month",
+            dtick="M1",
+            tickformat="%b %Y",
+            rangeslider=dict(
+                visible=True,
+                thickness=0.08,
+                bgcolor="#2b2b2b",
+                bordercolor="#555555",
+                borderwidth=1,
+            ),
+            range=[
+                runs_over_time["month"].iloc[-16] - timedelta(days=15),
+                runs_over_time["month"].iloc[-1] + timedelta(days=15),
+            ],
+        )
         month_labels = runs_over_time["month"].dt.strftime("%b %Y").to_numpy().reshape(-1, 1)
         
         fig1.update_traces(
@@ -455,39 +475,120 @@ def render_community_overview(df):
     with st.expander("Runs per Player", expanded=True):
         current_month = df["date"].dt.to_period("M").max().to_timestamp()
 
-        player_runs_counts = (
-            df.groupby("player_name", observed=False)
-            .size()
-            .reset_index(name="Runs")
-            .sort_values("Runs", ascending=False)
+        player_stats = df.copy()
+        player_stats["run_type"] = player_stats["level_name"].isna().map({
+            True: "Full Game",
+            False: "Individual Level",
+        })
+
+        # Aggregate runs and run time by player and run type
+        player_stats = (
+            player_stats
+            .groupby(["player_name", "run_type"], observed=False)
+            .agg(
+                Runs=("primary_t", "size"),
+                Total_Time=("primary_t", "sum"),
+            )
+            .reset_index()
         )
 
-        # Filter the dataframe to only this month, then count per player
-        df_this_month = df[df["date"].dt.to_period("M").dt.to_timestamp() == current_month]
-        month_map = df_this_month.groupby("player_name", observed=False).size()
+        # Calculate total runs and run time per player
+        player_totals = (
+            player_stats
+            .groupby("player_name", observed=False)
+            .agg(
+                Total_Runs=("Runs", "sum"),
+                Total_Time=("Total_Time", "sum"),
+            )
+            .reset_index()
+        )
 
-        # Add the monthly count to the table using a simple map
-        player_runs_counts["Month_Runs"] = player_runs_counts["player_name"].map(month_map).fillna(0).astype(int)
+        # Calculate runs submitted this month per player
+        df_this_month = df[
+            df["date"].dt.to_period("M").dt.to_timestamp() == current_month
+        ]
+        month_map = df_this_month.groupby(
+            "player_name", observed=False
+        ).size()
+
+        player_totals["Month_Runs"] = (
+            player_totals["player_name"]
+            .map(month_map)
+            .fillna(0)
+            .astype(int)
+        )
+
+        # Add player totals to each run type row
+        player_stats = player_stats.merge(
+            player_totals,
+            on="player_name",
+            how="left",
+        )
+
+        # Format total and run type times for hover
+        player_stats["Total_Time_Display"] = (
+            player_stats["Total_Time_y"]
+            .apply(format_time_duration)
+        )
+        player_stats["Run_Type_Time_Display"] = (
+            player_stats["Total_Time_x"]
+            .apply(format_time_duration)
+        )
+
+        # Order players by total runs, descending
+        player_order = (
+            player_totals
+            .sort_values("Total_Runs", ascending=False)["player_name"]
+            .tolist()
+        )
 
         fig4 = px.bar(
-            player_runs_counts,
+            player_stats,
             x="Runs",
             y="player_name",
+            color="run_type",
             orientation="h",
+            category_orders={
+                "run_type": ["Individual Level", "Full Game"],
+                "player_name": player_order,
+            },
             template="seaborn",
-            custom_data=["Month_Runs"]
+            custom_data=[
+                "Total_Runs",
+                "Total_Time_Display",
+                "Runs",
+                "Run_Type_Time_Display",
+                "Month_Runs",
+            ],
         )
-        
+
         fig4.update_traces(
-            hovertemplate="<b>%{label}</b><br>Total Runs: %{value}<br>Runs this Month: %{customdata[0]}<extra></extra>"
+            hovertemplate=(
+                "<b>%{y}</b><br>"
+                "Total Runs: %{customdata[0]}<br>"
+                "Total Run Time: %{customdata[1]}<br>"
+                "%{fullData.name} Runs: %{customdata[2]}<br>"
+                "%{fullData.name} Run Time: %{customdata[3]}<br>"
+                "Runs this Month: %{customdata[4]}"
+                "<extra></extra>"
+            )
         )
-        
-        fig4.update_yaxes(autorange="reversed", title="Player") 
+
+        fig4.update_yaxes(
+            autorange="reversed",
+            title="Player",
+            categoryorder="array",
+            categoryarray=player_order,
+        )
+
         fig4.update_layout(
+            barmode="stack",
             height=650,
             margin=dict(l=0, r=0, t=35, b=0),
             hovermode="closest",
             dragmode="pan",
             hoverlabel=dict(font_size=16),
+            legend_title_text="Run Type",
         )
+
         st.plotly_chart(fig4, config=CONFIG)
