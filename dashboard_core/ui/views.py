@@ -21,20 +21,23 @@ from dashboard_core.utils import (
 )
 
 
-def render_table(table_df):
+def render_table(table_df, config):
     """
     Render a display-ready table from `table_df`.
-    
+
     Expects `table_df` to include a formatted `"time_fmt"` column and `"place"`.
     Does not mutate the passed DataFrame.
 
     :param table_df: prepared table DataFrame
+    :param config: GameConfig instance
     """
     if table_df.empty:
         st.warning("No data available for this selection.")
         return None
-    
+
     table_cols = ["place", "player_name", "time_fmt", "note_name", "date", "weblink", "id"]
+    if config.note_key is None:
+        table_cols.remove("note_name")
     table_cols = [c for c in table_cols if c in table_df.columns]
     table_df = table_df[table_cols].rename(
         columns={
@@ -313,7 +316,7 @@ def plot_wr_count(df, character_selected= "All", note_selected="All"):
     return fig
 
 
-def render_community_overview(df):
+def render_community_overview(df,  config):
     """
     Render community-level summary charts and stats.
 
@@ -323,6 +326,7 @@ def render_community_overview(df):
     - Runs per category (treemap)
     
     :param df: DataFrame of runs
+    :param config: GameConfig instance
     """
     st.subheader("Community Overview")
     
@@ -336,7 +340,7 @@ def render_community_overview(df):
         )
 
         fig1 = px.bar(runs_over_time, x="month", y="Runs", text="Runs")
-        
+
         fig1.update_xaxes(
             title="Month",
             dtick="M1",
@@ -354,46 +358,46 @@ def render_community_overview(df):
             ],
         )
         month_labels = runs_over_time["month"].dt.strftime("%b %Y").to_numpy().reshape(-1, 1)
-        
+
         fig1.update_traces(
             textposition="outside",
             customdata=month_labels,
             hovertemplate="%{customdata[0]}: %{y} runs<extra></extra>",
         )
 
-        # Add character traces for their respective runs over time
-        months = runs_over_time["month"]
-        display_chars = (
-            df["character_name"].dropna().value_counts().index.tolist()
-        )
-        if display_chars:
-            char_month = (
-                df.assign(month=df["date"].dt.to_period("M").dt.to_timestamp())
-                .groupby(["month", "character_name"], observed=False)
-                .size()
-                .reset_index(name="Runs")
-            )
-            
-            for char in display_chars:
-                char_timeseries = (
-                    char_month[char_month["character_name"] == char]
-                    .set_index("month")["Runs"]
-                    .reindex(months)
-                    .fillna(0)
-                )
-                
-                fig1.add_trace(
-                    go.Scatter(
-                        x=months,
-                        y=char_timeseries.values,
-                        mode="lines+markers",
-                        name=str(char),
-                        hovertemplate=f"Character: {char}<br>Runs: %{'{y}'}<extra></extra>",
-                    )
+        # Add per-character traces only if this game has a character variable
+        if config.character_key is not None:
+            months = runs_over_time["month"]
+            display_chars = df["character_name"].dropna().value_counts().index.tolist()
+
+            if display_chars:
+                char_month = (
+                    df.assign(month=df["date"].dt.to_period("M").dt.to_timestamp())
+                    .groupby(["month", "character_name"], observed=False)
+                    .size()
+                    .reset_index(name="Runs")
                 )
 
+                for char in display_chars:
+                    char_timeseries = (
+                        char_month[char_month["character_name"] == char]
+                        .set_index("month")["Runs"]
+                        .reindex(months)
+                        .fillna(0)
+                    )
+
+                    fig1.add_trace(
+                        go.Scatter(
+                            x=months,
+                            y=char_timeseries.values,
+                            mode="lines+markers",
+                            name=str(char),
+                            hovertemplate=f"Character: {char}<br>Runs: %{'{y}'}<extra></extra>",
+                        )
+                    )
+
         fig1.update_layout(
-            legend_title_text="Character",
+            legend_title_text="Character" if config.character_key is not None else None,
             margin=dict(l=0, r=0, t=35, b=0),
             dragmode="pan",
             height=650,

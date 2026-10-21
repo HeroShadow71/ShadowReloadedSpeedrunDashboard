@@ -1,0 +1,1 @@
+"""Game-specific configuration for the dashboard."""

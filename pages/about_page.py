@@ -7,17 +7,8 @@ is self-contained (no external file dependencies), and also injects CSS for styl
 """
 import streamlit as st
 
-from constants import ABOUT_PAGE_FAVICON, ABOUT_PAGE_CSS, STAGE_CHART_PNG, SG_SHOWCASE_GIF
+from constants import ABOUT_PAGE_CSS, STAGE_CHART_PNG, SG_SHOWCASE_GIF
 from dashboard_core.utils import load_image_as_base64
-from dashboard_core.ui.ui_utils import nav_bar
-
-nav_bar()
-
-st.set_page_config(
-    page_title="Game & Dashboard Info",
-    page_icon=ABOUT_PAGE_FAVICON,
-    layout="wide",
-)
 
 # Apply CSS specific to this page
 st.html(ABOUT_PAGE_CSS)

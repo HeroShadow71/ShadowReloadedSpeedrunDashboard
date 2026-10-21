@@ -10,7 +10,7 @@ import os
 import logging
 
 from constants import (
-    DATA_DIR, CACHE_DIR, PROCESSED_DIR, LAST_REFRESH_FILE
+    DATA_DIR, CACHE_DIR, PROCESSED_DIR
 )
 
 
@@ -18,6 +18,26 @@ def ensure_project_dirs():
     """Create required project directories if missing."""
     for d in (DATA_DIR, CACHE_DIR, PROCESSED_DIR):
         Path(d).mkdir(parents=True, exist_ok=True)
+
+
+def game_cache_dir(config):
+    """
+    Return the cache directory for a specific game.
+
+    :param config: GameConfig instance
+    :return: Path to this game's cache subfolder
+    """
+    return CACHE_DIR / config.key
+
+
+def game_processed_file(config):
+    """
+    Return the processed-runs CSV path for a specific game.
+
+    :param config: GameConfig instance
+    :return: Path to this game's processed runs CSV
+    """
+    return PROCESSED_DIR / config.key / "runs_processed.csv"
 
 
 def safe_read_json(path, default=None):
@@ -56,39 +76,38 @@ def safe_write_json(path, data):
         return False
 
 
-def get_global_last_refresh():
-    """Return last refresh epoch seconds, or `None` if unavailable.
+def get_last_refresh(path):
+    """
+    Return last refresh epoch seconds, or `None` if unavailable.
 
-    Reads the JSON file written by the `set_global_last_refresh` function.
-
+    :param path: Path to the last-refresh JSON file to read
     :return: epoch seconds or `None`
     """
-    data = safe_read_json(LAST_REFRESH_FILE, default=None)
+    data = safe_read_json(path, default=None)
     if isinstance(data, dict):
         try:
-            # Convert stored value to float, return None if missing or invalid
             return float(data.get("last_refresh"))
         except (TypeError, ValueError):
             return None
     return None
 
 
-def set_global_last_refresh(ts):
+def set_last_refresh(path, ts):
     """
     Persist last refresh timestamp atomically.
 
+    :param path: Path to the last-refresh JSON file to write
     :param float ts: epoch seconds to persist
     :return: True on success, False on error
     """
-    tmp = LAST_REFRESH_FILE.with_suffix(".tmp")
+    tmp = path.with_suffix(".tmp")
     try:
         tmp.parent.mkdir(parents=True, exist_ok=True)
         with open(tmp, "w", encoding="utf-8") as f:
             json.dump({"last_refresh": ts}, f)
-        # Write to a temporary file and replace original atomically to prevent partial writes
-        os.replace(tmp, LAST_REFRESH_FILE)
+        os.replace(tmp, path)
         return True
-    
+
     except Exception as error:
         logging.warning("Failed to persist last refresh timestamp: %s", error)
         try:

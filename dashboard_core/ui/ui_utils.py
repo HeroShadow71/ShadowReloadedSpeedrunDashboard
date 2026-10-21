@@ -1,119 +1,123 @@
 """
 UI utilities for option generation, navigation and DataFrame preparation.
 
-Collection of small helpers used by the dashboard UI: sidebar navegation links,
+Collection of small helpers used by the dashboard UI: sidebar navigation links,
 ordered option lists from DataFrame and table/chart formatting utilities.
 """
-import streamlit as st
+
 import pandas as pd
 
-from constants import (
-    APP_FILE, ABOUT_PAGE_FILE,
-    LEVEL_ORDER, BOSS_ORDER, CATEGORY_ORDER, CHARACTER_ORDER,
-    STORY_MODE_ENDING_ORDER, UNLOCK_RIFLE_RULESET_ORDER,
-)
 
-
-def nav_bar():
-    """Render the sidebar navigation links.
-
-    Creates page links in the Streamlit sidebar for navigation between
-    the main dashboard and the about page.
+def get_scope_options(config):
     """
-    with st.sidebar:
-        st.page_link(APP_FILE, icon="📊", label="Dashboard")
-        st.page_link(ABOUT_PAGE_FILE, label="Game & Dashboard Info")
+    Return the available scope options for a given game.
+
+    "Boss" is only included if the game has boss levels configured.
+
+    :param config: GameConfig instance
+    :return: list of scope option strings
+    """
+    options = ["Individual Level"]
+    if config.boss_order:
+        options.append("Boss")
+    options.append("Full Game")
+    return options
 
 
-def get_scope_options():
-    """Returns the available scope options."""
-    return ["Individual Level", "Boss", "Full Game"]
-
-
-def get_level_or_boss_options(df, scope):
+def get_level_or_boss_options(df, scope, config):
     """
     Return ordered level or boss names available for the given scope.
 
     - For "Individual Level" or "Boss", keeps the configured order of
-      `LEVEL_ORDER` or `BOSS_ORDER` and includes only names present in the DataFrame.
+      `config.level_order` or `config.boss_order` and includes only names
+      present in the DataFrame.
     - For "Full Game", returns an empty list.
 
+    :param df: source runs DataFrame
     :param scope: one of `"Individual Level"`, `"Boss"` or `"Full Game"`
+    :param config: GameConfig instance
     :return: ordered list of level or boss names, or empty list
     """
     if scope in ("Individual Level", "Boss"):
         is_boss = scope == "Boss"
-        return [lvl for lvl in (BOSS_ORDER if is_boss else LEVEL_ORDER)
-                if lvl in df["level_name"].dropna().unique()]
+        order = config.boss_order if is_boss else config.level_order
+        return [lvl for lvl in order if lvl in df["level_name"].dropna().unique()]
     return []
 
 
-def get_category_options(df, scope, level_name=None):
+def get_category_options(df, scope, config, level_name=None):
     """
     Return ordered category options filtered by scope and optional level.
 
     - For "Individual Level" or "Boss" with a level selected, returns
       categories present in that level.
     - For "Full Game", returns categories from runs without a level.
-        
+
+    :param df: source runs DataFrame
     :param scope: current scope selection
+    :param config: GameConfig instance
     :param level_name: optional level name to filter categories for
     :return: ordered list of category names
     """
     if scope in ("Individual Level", "Boss") and level_name:
-            return [cat for cat in CATEGORY_ORDER
-                    if cat in df[df["level_name"] == level_name]["category_name"].unique()
-            ]
+        return [cat for cat in config.category_order
+                if cat in df[df["level_name"] == level_name]["category_name"].unique()]
 
-    return [cat for cat in CATEGORY_ORDER 
-            if cat in df[df["level_name"].isna()]["category_name"].unique()
-    ]
-    
+    return [cat for cat in config.category_order
+            if cat in df[df["level_name"].isna()]["category_name"].unique()]
 
-def get_character_note_options(df, include_all_chars=False):
+
+def get_character_note_options(df, config, include_all_chars=False):
     """
     Return ordered character and note option lists.
 
-    - Characters follow the configured CHARACTER_ORDER and are limited to
-      those present in the DataFrame.
-    - Notes always start with `"All"` and are sorted alphabetically.
+    - Characters follow `config.character_order` and are limited to those
+      present in the DataFrame. Returns `["All"]` (or `[]`) if this game has
+      no character variable configured, depending on `include_all_chars`.
+    - Notes always start with `"All"` and are sorted alphabetically. Returns
+      just `["All"]` if this game has no note variable configured.
 
+    :param df: source runs DataFrame
+    :param config: GameConfig instance
+    :param include_all_chars: if True, ensure `"All"` is present even with no character variable
     :return: tuple of (`character_options`, `note_options`)
     """
-    character_options = [char for char in CHARACTER_ORDER if char in df["character_name"].dropna().unique()]
-    
-    # Only add "All" if specifically requested (for WR counts view)
-    if include_all_chars:
-        character_options = ["All"] + character_options
-        
-    note_options = ["All"] + sorted(df["note_name"].dropna().unique())
-    
+    if config.character_key is None:
+        character_options = ["All"] if include_all_chars else []
+    else:
+        character_options = [
+            char for char in config.character_order
+            if char in df["character_name"].dropna().unique()
+        ]
+        if include_all_chars:
+            character_options = ["All"] + character_options
+
+    if config.note_key is None:
+        note_options = ["All"]
+    else:
+        note_options = ["All"] + sorted(df["note_name"].dropna().unique())
+
     return character_options, note_options
 
 
-def get_subcategory_options(df, category_name):
+def get_subcategory_options(df, category_name, config):
     """
-    Return subcategory options for the given category in configured order.
-
-    Only Story Mode and Unlock Shadow Rifle categories have subcategories.
-    For other categories, returns an empty list.
+    Return subcategory options for the given category, if configured.
 
     :param df: source runs DataFrame
     :param category_name: the selected category name
-    :return: ordered list of subcategory names
+    :param config: GameConfig instance
+    :return: ordered list of subcategory names, or empty list if this
+        category has no subcategories configured
     """
-    if category_name not in ("Story Mode", "Unlock Shadow Rifle"):
+    subcat_cfg = config.subcategories.get(category_name)
+    if subcat_cfg is None:
         return []
-    
-    # Filter for Full Game runs of the selected category
+
     mask = (df["level_name"].isna()) & (df["category_name"] == category_name)
     available_subcategories = set(df.loc[mask, "subcategory_name"].dropna().unique())
-    
-    # Return subcategories in configured order, filtered to only those available
-    if category_name == "Story Mode":
-        return [sub for sub in STORY_MODE_ENDING_ORDER if sub in available_subcategories]
-    else:  # Unlock Shadow Rifle
-        return [sub for sub in UNLOCK_RIFLE_RULESET_ORDER if sub in available_subcategories]
+
+    return [sub for sub in subcat_cfg.order if sub in available_subcategories]
 
 
 def get_player_options(df, scope, level_name=None, category_name=None):
@@ -135,9 +139,9 @@ def get_player_options(df, scope, level_name=None, category_name=None):
     filtered = df.query("category_name == @category_name")
     if scope in ("Individual Level", "Boss"):
         filtered = filtered.query("level_name == @level_name")
-        
+
     players = filtered["player_name"].dropna().unique().tolist()
-    
+
     return ["All Players"] + players if players else ["All Players"]
 
 
@@ -174,7 +178,6 @@ def prepare_table_df(
     )
     table_df = _format_places_for_display(filtered_df)
 
-    # Add formatted time/date for table display; keep primary_t numeric for charts
     table_df["time_fmt"] = table_df["primary_t"].apply(format_time_fn)
     table_df["date_fmt"] = pd.to_datetime(table_df["date"]).dt.strftime("%d/%m/%Y")
 
@@ -207,38 +210,29 @@ def _filter_runs_for_display(
     :param show_obsolete: include obsolete runs when True
     :return: filtered DataFrame (slice)
     """
-    # Use boolean masks to avoid full copies
     mask = pd.Series(True, index=df.index)
 
-    # Exclude obsolete runs unless show_obsolete is True
     if not show_obsolete and "obsolete" in df.columns:
         mask &= df["obsolete"] == False
 
-    # Apply scope-level/category filters
     if scope in ("Individual Level", "Boss"):
         mask &= (df["level_name"] == level_name) & (df["category_name"] == category)
     else:
         mask &= df["category_name"] == category
 
-    # Apply subcategory filter if provided
     if subcategory is not None:
         mask &= df["subcategory_name"] == subcategory
 
-    # Character filter (empty selection -> empty frame)
     if character_selected:
         if isinstance(character_selected, str):
-            # If it's a single string, only filter if it's not "All"
             if character_selected != "All":
                 mask &= df["character_name"] == character_selected
         else:
-            # It's a list (from multiselect), use .isin()
             mask &= df["character_name"].isin(character_selected)
 
     elif character_selected == []:
-        # If it's an empty list (nothing selected in multiselect), return empty
         return df.iloc[0:0]
 
-    # Apply note filter unless "All" selected
     if note_selected != "All":
         mask &= df["note_name"] == note_selected
 
@@ -255,25 +249,19 @@ def _format_places_for_display(table_df):
     """
     table_df = table_df.copy()
 
-    # Stable sort for display
     table_df = table_df.sort_values(["primary_t", "date"], na_position="last")
 
-    # Decide grouping columns that mirror ranking scope used upstream.
-    # Only include columns that actually contain values in this filtered table.
     filter_cols = ("level_name", "category_name", "character_name")
     group_cols = [col for col in filter_cols if col in table_df.columns and table_df[col].notna().any()]
 
-    # If nothing meaningful found, fall back to category_name when present.
     if not group_cols:
         if "category_name" in table_df.columns and table_df["category_name"].notna().any():
             group_cols = ["category_name"]
         else:
-            group_cols = []  # global ranking across visible rows
+            group_cols = []
 
-    # Compute rank among visible non-obsolete rows
     mask_non_obsolete = ~table_df["obsolete"].astype(bool)
 
-    # Initialize place_numeric with missing values
     table_df["place_numeric"] = pd.NA
 
     if mask_non_obsolete.any():
@@ -285,41 +273,34 @@ def _format_places_for_display(table_df):
         )
         table_df.loc[mask_non_obsolete, "place_numeric"] = ranks
 
-    # Prepare display column
     table_df["place"] = table_df["place_numeric"].astype(str)
     table_df.loc[table_df["obsolete"].astype(bool), "place"] = "Obsolete"
 
     return table_df
 
 
-def prepare_chart_df(table_df, view_type, player_selection):
+def prepare_chart_df(table_df, view_type, player_selection, config):
     """
     Prepare a DataFrame for charting and determine which column defines traces.
 
     :param table_df: DataFrame containing table view data
     :param view_type: Selected view type (ex: "`PB Progression`")
     :param player_selection: Selected player name or "`All Players`"
-    :return: Tuple (`chart_df, trace_col, pb_char_note_label`) where:
-    
-        - chart_df - copy of `table_df` with "`character_name`" and "`note_name`" coerced to strings
-        (adds "char_note" for single-player PB progression)
-        - trace_col - column name used for traces ("`char_note`" or "`player_name`")
-        - pb_char_note_label - "`Character - Note`" when applicable, else `None`
-    """ 
+    :param config: GameConfig instance
+    :return: Tuple (`chart_df, trace_col, pb_char_note_label`)
+    """
     chart_df = table_df.copy()
-    
-    # Define whether this is a single-player chart case
+
     single_player_chart = (view_type == "PB Progression") and (player_selection != "All Players")
-    
-    # Filter only the selected player's runs if applicable
+    has_char_or_note = config.character_key is not None or config.note_key is not None
+
     if single_player_chart:
         chart_df = chart_df[chart_df["player_name"] == player_selection]
 
     chart_df["note_name"] = chart_df["note_name"].fillna("").astype(str)
     chart_df["character_name"] = chart_df["character_name"].astype(str)
-    
-    # Single-player PB Progression uses character+note traces
-    if single_player_chart:
+
+    if single_player_chart and has_char_or_note:
         trace_col = "char_note"
         chart_df[trace_col] = chart_df["character_name"] + " - " + chart_df["note_name"]
         pb_char_note_label = "Character - Note"

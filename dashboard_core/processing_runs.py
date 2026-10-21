@@ -6,32 +6,50 @@ import logging
 
 import pandas as pd
 
-from constants import (
-    GAME_ID,
-    PLAYER_CACHE_FILE, CATEGORY_CACHE_FILE, LEVEL_CACHE_FILE,
-    CHAR_MAP, NOTE_MAP,
-    NOTE_KEY, CHARACTER_KEY, UNLOCK_RIFLE_VAR_MAP, STORY_MODE_ENDING_MAP,
-    STORY_MODE_ENDING_VAR_ID, UNLOCK_RIFLE_RULESET_VAR_ID
-)
 from dashboard_core.fetch_runs import fetch_verified_runs
 from dashboard_core.api_utils import fetch_api_cached
-from dashboard_core.io_utils import safe_read_json, safe_write_json
+from dashboard_core.io_utils import safe_read_json, safe_write_json, game_cache_dir
+
+# Sentinel used when a game has no character/note variable, so grouping logic
+# always has a non-null, constant key to group on instead of a dropped NaN.
+NO_CHARACTER = ""
+NO_NOTE = ""
 
 
-def process_runs():
-    """Fetch, normalize and rank verified runs.
+def process_runs(config):
+    """Fetch, normalize and rank verified runs for a given game.
 
     Creates/updates local caches for players, categories and levels.
-    
+
+    :param config: GameConfig instance for the game being processed
     :return: `df` DataFrame containing all processed runs
     """
-    verified_runs = fetch_verified_runs()
+    cache_dir = game_cache_dir(config)
+    verified_runs = fetch_verified_runs(config.game_id, cache_dir / "runs_cache.json")
+
+    categories_api = f"https://www.speedrun.com/api/v1/games/{config.game_id}/categories"
+    levels_api = f"https://www.speedrun.com/api/v1/games/{config.game_id}/levels"
+
+    try:
+        categories = fetch_api_cached(categories_api, cache_file=cache_dir / "categories_cache.json")
+    except Exception as e:
+        logging.exception("Failed to fetch categories from API")
+        raise RuntimeError("Failed to load categories") from e
+
+    try:
+        levels = fetch_api_cached(levels_api, cache_file=cache_dir / "levels_cache.json")
+    except Exception as e:
+        logging.exception("Failed to fetch levels from API")
+        raise RuntimeError("Failed to load levels") from e
+
+    category_name_by_id = {cat["id"]: cat["name"] for cat in categories}
+    level_name_by_id = {lvl["id"]: lvl["name"] for lvl in levels}
 
     # Define stable DataFrame schema for downstream logic and CSV export
     expected_cols = [
         "id", "weblink", "category", "level", "player_id",
         "date", "primary_t", "note", "character", "submitted",
-        "story_mode_ending", "unlock_rifle_ruleset"
+        "subcategory_raw"
     ]
 
     # Normalize API run objects into row dicts with the columns needed
@@ -40,8 +58,12 @@ def process_runs():
         player_id = None
         players = run.get("players") or []
         if players:
-            first = players[0]
-            player_id = first.get("id")
+            player_id = players[0].get("id")
+
+        values = run["values"]
+        category_name = category_name_by_id.get(run["category"])
+        subcat_cfg = config.subcategories.get(category_name)
+        subcategory_raw = values.get(subcat_cfg.var_id) if subcat_cfg else None
 
         cleaned_runs.append(
             {
@@ -52,38 +74,33 @@ def process_runs():
                 "player_id": player_id,
                 "date": run["date"],
                 "primary_t": run["times"]["primary_t"],
-                "note": run["values"][NOTE_KEY],
-                "character": run["values"][CHARACTER_KEY],
+                "note": values[config.note_key] if config.note_key else NO_NOTE,
+                "character": values[config.character_key] if config.character_key else NO_CHARACTER,
                 "submitted": run["submitted"],
-                "story_mode_ending": run["values"].get(STORY_MODE_ENDING_VAR_ID),
-                "unlock_rifle_ruleset": run["values"].get(UNLOCK_RIFLE_RULESET_VAR_ID)
+                "subcategory_raw": subcategory_raw,
             }
         )
 
     # Build DataFrame with stable column order
     df = pd.DataFrame(cleaned_runs, columns=expected_cols)
 
-    categories_api = f"https://www.speedrun.com/api/v1/games/{GAME_ID}/categories"
-    levels_api = f"https://www.speedrun.com/api/v1/games/{GAME_ID}/levels"
-
-    try:
-        categories = fetch_api_cached(categories_api, cache_file=CATEGORY_CACHE_FILE)
-    except Exception as e:
-        logging.exception("Failed to fetch categories from API")
-        raise RuntimeError("Failed to load categories") from e
-
-    try:
-        levels = fetch_api_cached(levels_api, cache_file=LEVEL_CACHE_FILE)
-    except Exception as e:
-        logging.exception("Failed to fetch levels from API")
-        raise RuntimeError("Failed to load levels") from e
-
     # Map category/level IDs into readable names
-    df["category_name"] = df["category"].map({cat["id"]: cat["name"] for cat in categories})
-    df["level_name"] = df["level"].map({lvl["id"]: lvl["name"] for lvl in levels})
+    df["category_name"] = df["category"].map(category_name_by_id)
+    df["level_name"] = df["level"].map(level_name_by_id)
+
+    # Map subcategory raw value into its readable name, using the per-category
+    # SubcategoryConfig (if the run's category has one)
+    def resolve_subcategory_name(row):
+        subcat_cfg = config.subcategories.get(row["category_name"])
+        if subcat_cfg is None or pd.isna(row["subcategory_raw"]):
+            return pd.NA
+        return subcat_cfg.value_map.get(row["subcategory_raw"], pd.NA)
+
+    df["subcategory_name"] = df.apply(resolve_subcategory_name, axis=1)
 
     # Load player cache and lookup for missing display names
-    player_map = safe_read_json(PLAYER_CACHE_FILE, default={}) or {}
+    player_cache_file = cache_dir / "players_cache.json"
+    player_map = safe_read_json(player_cache_file, default={}) or {}
 
     unique_player_ids = df["player_id"].dropna().unique()
     for p_id in unique_player_ids:
@@ -96,17 +113,12 @@ def process_runs():
                 logging.warning("Failed to fetch user %s, using ID as fallback: %s", p_id, e)
                 player_map[p_id] = p_id
 
-    safe_write_json(PLAYER_CACHE_FILE, player_map)
+    safe_write_json(player_cache_file, player_map)
 
-    # Map subcategory IDs to readable names
-    df["subcategory_name"] = pd.NA
-    df.loc[df["story_mode_ending"].notna(), "subcategory_name"] = df.loc[df["story_mode_ending"].notna(), "story_mode_ending"].map(STORY_MODE_ENDING_MAP)
-    df.loc[df["unlock_rifle_ruleset"].notna(), "subcategory_name"] = df.loc[df["unlock_rifle_ruleset"].notna(), "unlock_rifle_ruleset"].map(UNLOCK_RIFLE_VAR_MAP)
-    
     # Convert ID columns to readable columns
     df["player_name"] = df["player_id"].map(player_map)
-    df["character_name"] = df["character"].map(CHAR_MAP)
-    df["note_name"] = df["note"].map(NOTE_MAP)
+    df["character_name"] = df["character"].map(config.character_map) if config.character_key else NO_CHARACTER
+    df["note_name"] = df["note"].map(config.note_map) if config.note_key else NO_NOTE
 
     # Prepare columns used by ranking logic
     df["place"] = pd.NA
@@ -125,21 +137,20 @@ def process_runs():
     if mask_full_game.any():
         full_game_idx = df.index[mask_full_game]
         full_game_df = df.loc[full_game_idx].copy()
-        
-        # Get Story Mode and Unlock Shadow Rifle category IDs from the categories list
-        story_mode_id = next((cat["id"] for cat in categories if cat["name"] == "Story Mode"), None)
-        unlock_rifle_id = next((cat["id"] for cat in categories if cat["name"] == "Unlock Shadow Rifle"), None)
-        
-        # Separate Story Mode/Unlock Shadow Rifle (with subcategories) from others
-        mask_with_subcat = full_game_df["category"].isin([story_mode_id, unlock_rifle_id])
-        
+
+        # IDs of categories that have subcategories, per the config
+        subcat_category_ids = {
+            cat["id"] for cat in categories if cat["name"] in config.subcategories
+        }
+        mask_with_subcat = full_game_df["category"].isin(subcat_category_ids)
+
         # Process runs with subcategories (include subcategory_name in grouping)
         if mask_with_subcat.any():
             subcat_idx = full_game_df.index[mask_with_subcat]
             subcat_df = full_game_df.loc[subcat_idx].copy()
             mark_obsolete_and_place(subcat_df, ["category", "character", "subcategory_name"])
             full_game_df.loc[subcat_idx, ["obsolete", "place"]] = subcat_df[["obsolete", "place"]]
-        
+
         # Process runs without subcategories (don't include subcategory_name)
         mask_no_subcat = ~mask_with_subcat
         if mask_no_subcat.any():
@@ -147,11 +158,17 @@ def process_runs():
             no_subcat_df = full_game_df.loc[no_subcat_idx].copy()
             mark_obsolete_and_place(no_subcat_df, ["category", "character"])
             full_game_df.loc[no_subcat_idx, ["obsolete", "place"]] = no_subcat_df[["obsolete", "place"]]
-        
+
         df.loc[full_game_idx, ["obsolete", "place"]] = full_game_df[["obsolete", "place"]]
 
     # Drop intermediate id columns
-    df.drop(columns=["category", "level", "player_id", "character", "note", "story_mode_ending", "unlock_rifle_ruleset"], inplace=True)
+    df.drop(
+        columns=[
+            "category", "level", "player_id", "character", "note",
+            "subcategory_raw",
+        ],
+        inplace=True,
+    )
 
     # Ensure 'date' and 'submitted' are datetimelike
     df["date"] = pd.to_datetime(df["date"], errors="coerce")

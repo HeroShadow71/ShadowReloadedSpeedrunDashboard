@@ -7,7 +7,7 @@ and small utilities to keep widget layout stable across reruns.
 import streamlit as st
 import pandas as pd
 
-from constants import LEVEL_ORDER, BOSS_ORDER, CATEGORY_ORDER, CHARACTER_ORDER, CHART_VIEWS
+from constants import VIEW_OPTIONS
 from dashboard_core.ui.ui_utils import (
     get_scope_options, get_level_or_boss_options,
     get_category_options, get_character_note_options, get_player_options,
@@ -15,42 +15,44 @@ from dashboard_core.ui.ui_utils import (
 )
 
 
-def apply_categorical_ordering(df):
+def apply_categorical_ordering(df, config):
     """
     Apply ordered categorical dtype to known columns.
 
     :param df: runs DataFrame
+    :param config: GameConfig instance
     :return: `df` DataFrame with ordered categorical columns applied (in-place)
     """
     for col, order in [
-        ("level_name", LEVEL_ORDER + BOSS_ORDER),
-        ("category_name", CATEGORY_ORDER),
-        ("character_name", CHARACTER_ORDER)
+        ("level_name", config.level_order + config.boss_order),
+        ("category_name", config.category_order),
+        ("character_name", config.character_order or []),
     ]:
         if col in df.columns:
             df[col] = pd.Categorical(df[col], categories=order, ordered=True)
-            
+
     return df
 
 
-def render_scope_controls():
+def render_scope_controls(config):
     """
     Render the scope radio controls.
 
     Returns the selected scope string, or `None` for views that do not use
     scope selection (overview modes).
-    
+
+    :param config: GameConfig instance
     :return: selected `scope` or `None`
     """
     if st.session_state.get("view_type") in ("Current WR Counts", "Community Overview"):
         return None
     else:
         with st.container(border=True):
-            scope = st.radio("Select Scope", get_scope_options(), horizontal=True, key="scope_radio")
+            scope = st.radio("Select Scope", get_scope_options(config), horizontal=True, key="scope_radio")
         return scope
 
 
-def render_selection_controls(df, scope):
+def render_selection_controls(df, scope, config):
     """
     Render view and filter widgets and return current selections.
 
@@ -60,10 +62,11 @@ def render_selection_controls(df, scope):
 
     :param df: source runs DataFrame used to compute available options
     :param scope: current scope value returned by `render_scope_controls`
-    :return: tuple of: 
-    
+    :param config: GameConfig instance
+    :return: tuple of:
+
         - level_name;
-        - category_name; 
+        - category_name;
         - subcategory_name;
         - view_type;
         - player_selection;
@@ -75,91 +78,101 @@ def render_selection_controls(df, scope):
     view_type_current = st.session_state.get("view_type")
     if view_type_current in ("Current WR Counts", "Community Overview"):
         with st.container(border=True):
-            # Only WR Counts needs the extra filter columns
             is_wr_view = (view_type_current == "Current WR Counts")
-            
+
             if is_wr_view:
-                cols = st.columns([2, 2, 2])
-                view_type = cols[0].selectbox("Select view", ["Table"] + CHART_VIEWS, key="view_type")
-                
-                # Character Filter (WR only)
-                char_options, _ = get_character_note_options(df, include_all_chars=True)
-                character_selected = cols[1].selectbox("Select Character", char_options, key="wr_char_selected")
-                
-                # Note Filter (WR only)
-                _, note_options = get_character_note_options(df)
-                note_selected = cols[2].selectbox("Select Note Scope", note_options, key="wr_note_selected")
+                has_character = config.character_key is not None
+                has_note = config.note_key is not None
+                n_cols = 1 + has_character + has_note
+                cols = st.columns([2] * n_cols)
+                col_idx = 0
+
+                view_type = cols[col_idx].selectbox("Select view", ["Table"] + VIEW_OPTIONS, key="view_type")
+                col_idx += 1
+
+                if has_character:
+                    char_options, _ = get_character_note_options(df, config, include_all_chars=True)
+                    character_selected = cols[col_idx].selectbox("Select Character", char_options, key="wr_char_selected")
+                    col_idx += 1
+                else:
+                    character_selected = "All"
+
+                if has_note:
+                    _, note_options = get_character_note_options(df, config)
+                    note_selected = cols[col_idx].selectbox("Select Note Scope", note_options, key="wr_note_selected")
+                else:
+                    note_selected = "All"
             else:
-                # Community Overview: Only show the View selector
                 cols = st.columns([2, 3])
-                view_type = cols[0].selectbox("Select view", ["Table"] + CHART_VIEWS, key="view_type")
+                view_type = cols[0].selectbox("Select view", ["Table"] + VIEW_OPTIONS, key="view_type")
                 character_selected = "All"
                 note_selected = "All"
-            
+
         return None, None, None, view_type, "All Players", character_selected, note_selected, True
 
     with st.container(border=True):
-        # Level/category selectors
         with st.container():
             col1, col2 = st.columns((2, 3))
-            # Level/Boss selector
             with col1:
                 lvl_ph = col1.empty()
                 if scope in ("Individual Level", "Boss"):
-                    level_options = get_level_or_boss_options(df, scope)
-                    level_name = _render_select_widget(lvl_ph, "Select Level/Boss", level_options, key="level_select")
+                    level_options = get_level_or_boss_options(df, scope, config)
+                    level_name = _render_select_widget(
+                        lvl_ph, "Select Level/Boss", level_options, key="level_select"
+                    )
                 else:
                     level_name = None
 
-            # Category selector (filtered by level when applicable)
             if scope in ("Individual Level", "Boss"):
                 with col2:
                     cat_ph = col2.empty()
-                    category_options = get_category_options(df, scope, level_name=level_name)
-                    category_name = _render_select_widget(cat_ph, "Select Category", category_options, key="category_select")
+                    category_options = get_category_options(df, scope, config, level_name=level_name)
+                    category_name = _render_select_widget(
+                        cat_ph,
+                        "Select Category",
+                        category_options,
+                        key="category_select",
+                        auto_select_single=True
+                    )
             else:
                 with col1:
                     cat_ph = col1.empty()
-                    category_options = get_category_options(df, scope)
-                    category_name = _render_select_widget(cat_ph, "Select Category", category_options, key="category_select")
-
-        # Subcategory selector (only for Full Game scope with Story Mode or Unlock Shadow Rifle)
-        subcategory_name = None
-        if scope == "Full Game" and category_name in ("Story Mode", "Unlock Shadow Rifle"):
-            with st.container():
-                subcat_ph = st.empty()
-                subcategory_options = get_subcategory_options(df, category_name)
-                if subcategory_options:
-                    # Use appropriate label based on category
-                    if category_name == "Story Mode":
-                        label = "Select Ending"
-                    elif category_name == "Unlock Shadow Rifle":
-                        label = "Select Ruleset"
-                    
-                    subcategory_name = _render_select_widget(
-                        subcat_ph,
-                        label,
-                        subcategory_options,
-                        key="subcategory_select"
+                    category_options = get_category_options(df, scope, config)
+                    category_name = _render_select_widget(
+                        cat_ph,
+                        "Select Category",
+                        category_options,
+                        key="category_select",
+                        auto_select_single=True
                     )
 
-        # Reserve placeholders for stable layout
+        subcategory_name = None
+        subcategory_options = get_subcategory_options(df, category_name, config) if category_name else []
+
+        if scope == "Full Game" and subcategory_options:
+            with st.container():
+                subcat_ph = st.empty()
+                subcat_cfg = config.subcategories[category_name]
+                subcategory_name = _render_select_widget(
+                    subcat_ph,
+                    subcat_cfg.label,
+                    subcategory_options,
+                    key="subcategory_select"
+                )
+
         col_char_visual, col_note_visual = st.columns((2, 3))
         char_ph = col_char_visual.empty()
         note_ph = col_note_visual.empty()
 
-    # Container for view selector and player selector placeholders
     with st.container(border=True):
         col_view_vis, col_player_vis = st.columns([2, 3])
         view_ph = col_view_vis.empty()
         player_ph = col_player_vis.empty()
 
-    # Render the view type selectbox
-    view_type = view_ph.selectbox("Select data view", ["Table"] + CHART_VIEWS, key="view_type")
+    view_type = view_ph.selectbox("Select data view", ["Table"] + VIEW_OPTIONS, key="view_type")
 
-    # Player selection (PB Progression only)
     player_selection = "All Players"
-    if view_type == "PB Progression":
+    if view_type == "PB Progression" and config.character_key is not None:
         player_options = get_player_options(df, scope, level_name=level_name, category_name=category_name)
         player_selection = _render_select_widget(
             player_ph,
@@ -170,13 +183,16 @@ def render_selection_controls(df, scope):
     else:
         player_ph.empty()
 
-    # Character and Note selectors (multiselect only for single-player PB view)
-    if category_name == "100% No Library":
+    character_options, note_options = get_character_note_options(df, config)
+
+    if category_name == "100% No Library" and config.character_order:
         char_ph.empty()
-        character_selected = ["Shadow"]
-        _, note_options = get_character_note_options(df)
+        character_selected = [config.character_order[0]]
+
+    elif not character_options:
+        char_ph.empty()
+        character_selected = None
     else:
-        character_options, note_options = get_character_note_options(df)
         is_char_multi = (view_type == "PB Progression" and player_selection != "All Players")
 
         character_selected = _render_select_widget(
@@ -189,10 +205,12 @@ def render_selection_controls(df, scope):
             always_list=True,
         )
 
-    # Note selector
-    note_selected = _render_select_widget(note_ph, "Select Note", note_options, key="note_selected")
+    if len(note_options) > 1:
+        note_selected = _render_select_widget(note_ph, "Select Note", note_options, key="note_selected")
+    else:
+        note_ph.empty()
+        note_selected = "All"
 
-    # "Show Obsolete Runs" checkbox is only shown for the Table view
     if view_type == "Table":
         show_obsolete = st.checkbox("Show Obsolete Runs", value=False, key="show_obsolete")
     else:
@@ -201,7 +219,16 @@ def render_selection_controls(df, scope):
     return level_name, category_name, subcategory_name, view_type, player_selection, character_selected, note_selected, show_obsolete
 
 
-def _render_select_widget(ph, label, options, key, multiselect=False, default_all=False, always_list=False):
+def _render_select_widget(
+    ph,
+    label,
+    options,
+    key,
+    multiselect=False,
+    default_all=False,
+    always_list=False,
+    auto_select_single=False
+):
     """
     Render a selectbox or multiselect inside a placeholder and return the selection.
 
@@ -217,8 +244,15 @@ def _render_select_widget(ph, label, options, key, multiselect=False, default_al
     :param multiselect: render a multiselect instead of a selectbox
     :param default_all: if True and multiselect, preselect all options
     :param always_list: if True and not multiselect, wrap single selection in a list
+    :param auto_select_single: if True and not multiselect, skip rendering when
+        there is exactly one option and return it directly
     :return: selected value (string) or list of selected values
     """
+    if auto_select_single and not multiselect and len(options) == 1:
+        ph.empty()
+        val = options[0]
+        return [val] if always_list else val
+
     if not options:
         options = [""]
 
